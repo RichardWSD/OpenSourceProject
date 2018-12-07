@@ -3047,9 +3047,9 @@
 			return this.pushStack(matched);
 		};
 	});
-	var rnotwhite = (/\S+/g);
-
-
+	var rnotwhite = (/\S+/g);  //在正则过程中，字符串是从左至右匹配的，如果匹配成功就不再继续向右匹配了，如果你带g,它会重头到尾的把正确匹配的字符串挑选出来
+							  //  \S匹配任何非空白字符
+							  
 
 	// String to Object options format cache
 	var optionsCache = {};
