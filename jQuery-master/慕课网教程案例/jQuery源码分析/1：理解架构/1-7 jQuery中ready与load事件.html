@@ -29,7 +29,12 @@ $(function(){
 
 console.log('脚本解析三')
 
+//在加载jQuery的时候已经先给document绑定了一个DOMContentLoaded事件，此次绑定的回调函数输出脚本解析二，而后执行到
+//document.addEventListener("DOMContentLoaded", function() {
 
+//    show('DOMContentLoaded回调')
+
+//}, false); 时又给document绑定了一个DOMContentLoaded事件，这次回调函数输出DOMContentLoaded回调，所以当DOMContentLoaded事件发生时，按照顺序依次输出了 脚本解析二、DOMContentLoaded回调
 
 </script>
 </head>

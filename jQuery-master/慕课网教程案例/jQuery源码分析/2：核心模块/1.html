@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <ul id="list">
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+    </ul>
+    <p><b>Values: </b></p>
+    <form>
+        <input type="text" name="name" value="John" />
+        <input type="text" name="password" value="password" />
+        <input type="text" name="url" value="http://ejohn.org/" />
+    </form>
+    <div id="test">Click Here!</div>
+    <script text="text/javascript">
+        //     var $$ = ajQuery = function(selector) {
+        //     this.selector = selector;
+        //     return new ajQuery(selector);
+        // }
+
+        // var obj = new $$('#dd');
+
+        var $$ = ajQuery = function (selector) {
+            //把原型上的init作为构造器
+            return new ajQuery.fn.init(selector);
+        }
+
+        ajQuery.fn = ajQuery.prototype = {
+            name: 'aaron',
+            init: function () {
+                console.log(this)
+            },
+            constructor: ajQuery
+        }
+
+        ajQuery('#dd');
+
+        $.each(['a', 'b'], function (index, item) {
+            $('body').append('<li>' + item + '</li>');
+        });
+
+        // var deepList = document.getElementById('list').cloneNode(true);
+        // alert(deepList.childNodes.length);
+
+        // var ul = document.getElementById('list');
+        // alert(deepList.childNodes.length);
+
+        $.extend({
+            'abc': 111
+        }, {
+            bbc: 'bbc'
+        });
+
+        $.extend(function abc() {}, {
+            'a': 'a'
+        });
+
+        $.trim("   122   ");
+
+        $.camelCase('-ms-mar');
+
+        $("p").append($("input").map(function () {
+            return $(this).val();
+        }).get().join(", "));
+
+        $.isNumeric({});
+
+        $.isPlainObject({
+            a: 'a'
+        });
+
+        var arr = [4, "Pete", 8, "John"];
+        jQuery.inArray("John", arr); //3
+        jQuery.inArray("John", arr, 2); //3
+
+        var obj = {
+            name: "John",
+            test: function () {
+                alert(this.name);
+                $("#test").unbind("click", obj.test);
+            }
+        };
+
+        $("#test").click(jQuery.proxy(obj, "test"));
+
+        // 以下代码跟上面那句是等价的:
+        // $("#test").click( jQuery.proxy( obj.test, obj ) );
+
+        // 可以与单独执行下面这句做个比较。
+        //$("#test").click( obj.test );
+
+        // let script = document.createElement("script");
+        // script.text = 'alert("aaa")';
+        // document.head.appendChild(script).parentNode.removeChild(script);
+        // var obj = {
+        //     'a': 'a',
+        //     '0': 'a',
+        //     length: 1
+        // };
+        // var b = isArraylike(obj);
+
+        // function isArraylike(obj) {
+        //     var length = obj.length,
+        //         type = jQuery.type(obj);
+
+        //     if (type === "function" || jQuery.isWindow(obj)) {
+        //         return false;
+        //     }
+
+        //     if (obj.nodeType === 1 && length) {
+        //         return true;
+        //     }
+
+        //     return type === "array" || length === 0 ||
+        //         typeof length === "number" && length > 0 && (length - 1) in obj;
+        // };
+    </script>
+</body>
+
+</html>
