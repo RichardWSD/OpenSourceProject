@@ -15,7 +15,7 @@
         <li>item 2</li>
         <li>item 3</li>
     </ul>
-    <p><b>Values: </b></p>
+    <p id="tg"><b>Values: </b></p>
     <form>
         <input type="text" name="name" value="John" />
         <input type="text" name="password" value="password" />
@@ -96,6 +96,13 @@
 
         var arr = jQuery.makeArray(document.getElementsByTagName("div"));
 arr.reverse(); // 使用数组翻转函数
+
+        $('#tg').click(function(){
+            $(this).toggleClass("selected");
+        });
+
+        $('#tg').html('accc');
+
 
         // 以下代码跟上面那句是等价的:
         // $("#test").click( jQuery.proxy( obj.test, obj ) );
