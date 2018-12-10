@@ -5206,6 +5206,7 @@
 	}
 
 	function getAll(context, tag) {
+		//getElementsByTagName 参数值 "*" 返回文档的所有元素
 		var ret = context.getElementsByTagName ? context.getElementsByTagName(tag || "*") :
 			context.querySelectorAll ? context.querySelectorAll(tag || "*") : [];
 
