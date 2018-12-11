@@ -22,7 +22,10 @@
         <input type="text" name="url" value="http://ejohn.org/" />
     </form>
     <span id="test">Click Here!</span>
-    <div>First</div><div>Second</div><div>Third</div><div>Fourth</div>
+    <div>First</div>
+    <div>Second</div>
+    <div>Third</div>
+    <div>Fourth</div>
     <script text="text/javascript">
         //     var $$ = ajQuery = function(selector) {
         //     this.selector = selector;
@@ -95,13 +98,21 @@
         $("#test").click(jQuery.proxy(obj, "test"));
 
         var arr = jQuery.makeArray(document.getElementsByTagName("div"));
-arr.reverse(); // 使用数组翻转函数
+        arr.reverse(); // 使用数组翻转函数
 
-        $('#tg').click(function(){
+        $('#tg').click(function () {
             $(this).toggleClass("selected");
         });
 
         $('#tg').html('accc');
+
+        $("<div>", {
+            "class": "test",
+            text: "Click me!",
+            click: function () {
+                $(this).toggleClass("test");
+            }
+        }).appendTo("body");
 
 
         // 以下代码跟上面那句是等价的:
