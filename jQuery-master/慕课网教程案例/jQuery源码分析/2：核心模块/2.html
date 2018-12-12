@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <form id='form1' action="/abc.ashx">
+        <!-- <form action="www.baidu.com">
+
+        </form> -->
+        <br />
+        <input type="text" name="txt1" />
+        <input type="submit" value="btn1" />
+    </form>
+</body>
+<script text="text/javascript">
+    $(function () {
+        $('#form1').append('<form id="form2" action="www.baidu.com"><input type="text" name="txt2" /><input type="button" value="btn2" onclick="abc()" /></form>');
+        // $('#form1').html('<p>sss</p>');
+    });
+
+function abc(){
+    $.ajax({
+        url:"/ac.ashx",
+        type:"post",
+        success:function(data){
+            
+            alert("over..");
+        },
+        error:function(){
+            alert("over..");
+        }
+    }); 
+}
+    
+</script>
+
+</html>
