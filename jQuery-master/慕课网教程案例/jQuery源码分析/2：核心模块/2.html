@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <form id='form1' action="/abc.ashx">
+    <form id='form1' action="/abc.ashx" method="POST">
         <!-- <form action="www.baidu.com">
 
         </form> -->
@@ -21,7 +21,7 @@
 </body>
 <script text="text/javascript">
     $(function () {
-        $('#form1').append('<form id="form2" action="www.baidu.com"><input type="text" name="txt2" /><input type="button" value="btn2" onclick="abc()" /></form>');
+        $('#form1').append('<form id="form2" action="www.baidu.com"><input type="text" name="txt2" /><input type="button" value="btn2" onclick="abc()" /></form><br /><input type="text" name="txt3" />');
         // $('#form1').html('<p>sss</p>');
     });
 
