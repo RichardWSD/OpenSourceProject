@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <!-- #region  jq文档例子-->
+    <!-- <form>
+        <label>Name:</label>
+        <input name="name"  class="abc" />
+        <input name="abc" />
+        <fieldset>
+            <label>Newsletter:</label>
+            <input name="newsletter" />
+       </fieldset>
+      </form>
+      <input name="none" /> -->
+    <!-- #endregion -->
+    <div id="text">
+        <p>
+            <input type="text" />
+        </p>
+        <div class="aaron">
+            <input type="checkbox" name="readme" />
+            <input type="checkbox" name="ttt" />
+            <input type="checkbox" name="aaa" />
+            <p>Sizzle</p>
+        </div>
+    </div>
+    <script>
+        //   console.log($('label+input.abc'))
+        console.log($('div > div.aaron input[name=ttt]'));
+        console.log(document.querySelectorAll(' div > div.aaron input[name=ttt]'));
+    </script>
+</body>
+
+</html>
