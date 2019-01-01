@@ -66,7 +66,7 @@ function task3(name) {
   var dtd = $.Deferred();
   setTimeout(function() {
     show('task3执行完毕',$("#aaron2"))
-    dtd.resolve(name)
+    dtd.resolve(name) //这行代码注释掉不会调用done的回调
   }, 500)
   return dtd;
 }
@@ -75,14 +75,14 @@ function task4(name) {
   var dtd = $.Deferred();
   setTimeout(function() {
     show('task4执行完毕',$("#aaron2"))
-    dtd.resolve(name)
+    dtd.resolve(name) //
   }, 1000)
   return dtd;
 }
 
 $("#aaron2").click(function() {
   $.when(task3('task1'), task4('task2')).done(function() {
-    show('when处理成功', $("#aaron2"))
+    show('when处理成功', $("#aaron2")) //这行代码注释掉不会调用done的回调
   })
 })
 
