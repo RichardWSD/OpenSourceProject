@@ -3148,6 +3148,7 @@
 			self = {
 				// Add a callback or a collection of callbacks to the list
 				add: function () {
+					//注意，list如果是长度为0的数组([])也是会进来
 					if (list) {
 						// First, we save the current length
 						var start = list.length;

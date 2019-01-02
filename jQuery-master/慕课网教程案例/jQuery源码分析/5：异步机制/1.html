@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <script>
+        if (!window.openDatabase) {
+
+            console.log('该浏览器不支持数据库');
+
+        }
+
+        //1.数据库名字 2.数据库版本号 3.显示名字 4.数据库保存数据大小（以字节Byte为单位 10M）5.回调函数（非必须）
+        //打开数据库 
+        dataBase = window.openDatabase("myAutoTest.db", "1.0", "自动化测试平台数据库数据库", 10 * 1024 * 1024);
+
+        //创建数据表
+        dataBase.transaction(function (tx) {
+            tx.executeSql(
+
+                "create table if not exists TEMPLATE (template_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, template_name TEXT)",
+
+                [],
+
+                function (tx, result) { alert('创建模板表成功'); },
+
+                function (tx, error) {
+                    alert('创建模板表失败:' + error.message);
+
+                });
+        });
+
+        //添加数据
+        dataBase.transaction(function (tx) {
+
+            tx.executeSql(
+
+                "insert into TEMPLATE (template_name) values(?)",
+
+                ['模板1'],
+
+                function () { alert('添加数据成功'); },
+
+                function (tx, error) {
+                    alert('添加数据失败: ' + error.message);
+
+                });
+        });
+
+        //查询数据
+        dataBase.transaction(function (tx) {
+
+            tx.executeSql(
+
+                "select * from TEMPLATE ", [],
+
+                function (tx, result) { //执行成功的回调函数
+
+                    //在这里对result 做你想要做的事情吧...........
+                    console.log('tx: ', tx);
+                    console.log('result: ', result);
+                },
+
+                function (tx, error) {
+
+                    alert('查询失败: ' + error.message);
+
+                });
+
+        });
+
+    </script>
+</body>
+
+</html>
