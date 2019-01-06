@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<div>
+    instanceof 操作符，只要用这个操作符来测试实例与原型链中出现过的构造函数，结果就会返回 true
+</div>
+<div>
+    第二种方式是使用 isPrototypeOf()方法。同样，只要是原型链中出现过的原型，都可以说是该原型链所派生的实例的原型，因此 isPrototypeOf()方法也会返回 true
+</div>
+<div>
+    检测基本数据类型时 typeof
+</div>
+<div>
+    检测引用类型用instanceof
+</div>
+
+<body>
+    <script>
+        function SuperType() {
+            this.property = true;
+        }
+        SuperType.prototype.getSuperValue = function () {
+            return this.property;
+        };
+
+        function SubType() {
+            this.subproperty = false;
+        }
+        //继承了 SuperType
+        SubType.prototype = new SuperType();
+        SubType.prototype.getSubValue = function () {
+            return this.subproperty;
+        };
+        var instance = new SubType();
+
+        console.log(instance instanceof Object); //true
+        console.log(instance instanceof SuperType); //true
+        console.log(instance instanceof SubType); //true
+        console.log(Object.prototype.isPrototypeOf(instance)); //true
+        console.log(SuperType.prototype.isPrototypeOf(instance)); //true
+        console.log(SubType.prototype.isPrototypeOf(instance)); //true F
+    </script>
+</body>
+
+</html>

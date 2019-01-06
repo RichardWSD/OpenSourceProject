@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>document.write() Example</title>
+    <script src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+    <p>The current date and time is:
+        <script type="text/javascript">
+            document.write("<strong>" + (new Date()).toString() + "</strong>");
+        </script>
+    </p>
+    <script type="text/javascript">
+        document.write("<script type=\"text/javascript\" src=\"file.js\">" +
+            "<\/script>");
+    </script>
+    <script type="text/javascript">
+        // window.onload = function () {
+        //     //等到页面完全加载之后延迟执行函数。函数执行之后，字符串"Hello world!"会重写整个页面内容
+        //     document.write("Hello world!");
+        // };
+        $('#btn').click(function (param) {
+            //document.write("aa");
+            var newDoc = document.open("text/html", "replace");
+            var txt = "<html><body>Learning about the DOM is FUN!</body></html>";
+            newDoc.write(txt);
+            newDoc.close();
+        });
+    </script>
+</body>
+
+</html>

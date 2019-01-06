@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../jquery-2.1.1.js"></script>
+</head>
+<body>
+    <p style="display:none">11</p>
+    <!-- <p>22</p> -->
+    <script>
+        $("p").slideToggle("slow");
+        $("p").slideToggle("slow");
+
+        function Data() {
+		Object.defineProperty(this.cache = {}, 0, {
+			get: function () {
+				return {};
+			}
+		});
+    }
+    var obj = new Data();
+    console.log(obj);
+    console.log(obj.cache["0"]);
+    </script>
+</body>
+</html>

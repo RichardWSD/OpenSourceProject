@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <ul id="uId">
+        <li name="first-li">ab</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <p dir="rtl">avcdd</p>
+    <!-- bdo 元素可覆盖默认的文本方向 -->
+    <p style="text-align:center"><bdo dir="RTL">芙蓉楼送辛渐</bdo></p>
+    <button id="btn">Click</button>
+    <script>
+        console.log(document.getElementById('uId'));
+        console.log(document.getElementsByTagName('li'));
+
+        var myList = document.getElementById('uId');    
+        var deepList = myList.cloneNode(true);
+        console.log(deepList.childNodes); //3（ IE < 9）或 7（其他浏览器）
+        var shallowList = myList.cloneNode(false);
+        console.log(shallowList.childNodes); //0
+
+        $('#btn').click(function (param) { 
+            myList.childNodes[0].data = '';
+            //如果找到了空文本节点，则删除它；如果找到相邻的文本节点，则将它们合并为一个文本节点
+            myList.normalize();
+            console.log(myList.childNodes);
+         });
+
+         //HTMLCollection和NodeList都能用item方法，HTMLCollection能用namedItem方法
+         var lis = document.getElementsByTagName('li');
+         console.log(lis.item(0).innerText);
+         console.log(lis.namedItem('first-li').innerText);
+
+         console.log(lis.item(0).attributes);
+    </script>
+</body>
+
+</html>
