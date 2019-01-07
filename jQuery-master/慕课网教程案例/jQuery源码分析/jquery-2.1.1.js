@@ -117,6 +117,7 @@
 				(num < 0 ? this[num + this.length] : this[num]) :
 
 				// Return all the elements in a clean array
+				//可以返回一个干净的只有元素的数组
 				slice.call(this);
 		},
 
@@ -1303,6 +1304,7 @@
 							return 0;
 						}
 
+						//compareDocumentPosition是DOM方法
 						// Sort on method existence if only one input has compareDocumentPosition
 						var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
 						if (compare) {

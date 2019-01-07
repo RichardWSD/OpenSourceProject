@@ -114,6 +114,10 @@
             }
         }).appendTo("body");
 
+        $.each({'1':'a','2':'b'},function(index, item){
+            console.log(index, item);
+        });
+
 
         // 以下代码跟上面那句是等价的:
         // $("#test").click( jQuery.proxy( obj.test, obj ) );

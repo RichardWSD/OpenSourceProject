@@ -1,0 +1,28 @@
+<html>
+
+<head>
+    <style type="text/css">
+        p.red {
+            color: red;
+        }
+    </style>
+    <script type="text/javascript" src="../jquery-2.1.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var b = true;
+            $(".btn1").click(function () {
+                //$("p").toggle(b = !b);
+                //$("p").toggle();
+                $("p").toggleClass('red');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <p>This is a paragraph.</p>
+    <p>把 switch 参数设置为 false，可以隐藏所有段落。</p>
+    <button class="btn1">显示所有 p 元素</button>
+</body>
+
+</html>
