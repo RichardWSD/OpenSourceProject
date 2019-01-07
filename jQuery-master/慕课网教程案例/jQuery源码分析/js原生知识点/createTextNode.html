@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-2.1.1.js"></script>
+</head>
+<div>空白</div>
+<div class="abc">abc</div>
+<div id="myDiv"><![CDATA[This is some content.]]></div>
+<div id="myDiv2"><!--A comment --></div>
+<body>
+    <script>
+        // var res = htmlEncode("Some <strong>other</strong> message");
+        // $('div.abc').html(res);
+        // res = htmlDecode(res);
+        // $('div.abc').html(res);
+
+
+        // //Html编码获取Html转义实体
+        // function htmlEncode(value) {
+        //     return $('<div>').text(value).html();
+        // }
+        // //Html解码获取Html实体
+        // function htmlDecode(value) {
+        //     return $('<div>').html(value).text();
+        // }
+    </script>
+    <script>
+        // var element = document.createElement("div");
+        // element.className = "message";
+        // var textNode = document.createTextNode("Hello world!");
+        // element.appendChild(textNode);
+        // var anotherTextNode = document.createTextNode("Yippee!");
+        // element.appendChild(anotherTextNode);
+        // document.body.appendChild(element);
+
+        var div = document.getElementsByTagName('div')[0];
+        div.firstChild.nodeValue = "Some <strong>other</strong> message";
+        function htmlEncode(str) {
+            var div = document.createElement("div");
+            var text = document.createTextNode(str);
+            div.appendChild(text);
+            return div.innerHTML;
+        }
+        function htmlDecode(str) {
+            var div = document.createElement("div");
+            div.innerHTML = str;
+            return div.innerText;
+        }
+    </script>
+
+</body>
+
+</html>
