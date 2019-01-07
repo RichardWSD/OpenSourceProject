@@ -10,7 +10,27 @@
 </head>
 
 <body>
+    <button id="aaron1">例一:基本用法</button>
     <script>
+        $("#aaron1").on("click", function () {
+            // 构建一个deferred对象
+            var dtd = $.Deferred();
+            // 给deferred注册一个成功后的回调通知
+            dtd.progress(function () {
+                show('成功')
+            })
+
+            dtd.notify('111');
+            dtd.done(function (val) {
+                show(val)
+            })
+        });
+
+        function show(data) {
+            $("body").append('<li>' + data + '</li>')
+        }
+    </script>
+<script>
         var d = $.Deferred();
 
   
