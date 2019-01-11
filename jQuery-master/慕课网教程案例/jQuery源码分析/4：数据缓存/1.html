@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-2.1.1.js"></script>
+</head>
+<body>
+        <div class="aaa" data-aaa="from div.aaa">aaa</div>
+        <div class="bbb">bbb</div>
+        <script>
+            $("div").data("blah", "from $");
+            jQuery.data(document.body ,"blah", "from jQuery");
+            console.log($('div').data('aaa'))
+        </script>
+</body>
+</html>

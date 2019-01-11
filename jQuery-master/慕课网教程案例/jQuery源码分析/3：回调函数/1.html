@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../jquery-2.1.1.js"></script>
+</head>
+
+<body>
+    <script>
+        function show(data) {
+            $("body").append('<li>' + data + '</li>')
+        }
+
+        function fn1(val) {
+            show('fn1 says ' + val);
+        }
+
+        function fn2(val) {
+            show('fn2 says ' + val);
+        }
+
+        function fn3(val) {
+            show('fn3 says ' + val);
+        }
+
+        var cbs = $.Callbacks('once memory');
+        cbs.add(fn1);
+        cbs.fire('foo');
+
+        cbs.add(fn2);
+        cbs.fire('bar');
+    </script>
+
+</body>
+
+</html>
