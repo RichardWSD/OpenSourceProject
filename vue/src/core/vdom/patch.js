@@ -141,6 +141,7 @@ export function createPatchFunction (backend) {
     }
 
     vnode.isRootInsert = !nested // for transition enter check
+    // wsd: $vnode为组件的占位node；_vnode为组件的渲染vnode
     if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
       return
     }

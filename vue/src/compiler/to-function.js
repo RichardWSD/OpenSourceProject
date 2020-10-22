@@ -9,6 +9,7 @@ type CompiledFunctionResult = {
   staticRenderFns: Array<Function>;
 };
 
+// wsd: $options.render
 function createFunction (code, errors) {
   try {
     return new Function(code)

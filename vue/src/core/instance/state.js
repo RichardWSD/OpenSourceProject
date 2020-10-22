@@ -42,6 +42,7 @@ export function proxy (target: Object, sourceKey: string, key: string) {
   sharedPropertyDefinition.set = function proxySetter (val) {
     this[sourceKey][key] = val
   }
+  // wsd: 实现可以通过this.msg这种方式访问data中定义的msg
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
