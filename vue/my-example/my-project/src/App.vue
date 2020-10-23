@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    {{ msg }}
+    <!-- <img src="./assets/logo.png">
+    <HelloWorld/> -->
   </div>
 </template>
 
@@ -12,6 +13,11 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  data(){
+    return {
+      msg: 'Hello World!'
+    }
   }
 }
 </script>

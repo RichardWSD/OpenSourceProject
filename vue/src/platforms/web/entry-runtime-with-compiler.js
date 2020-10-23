@@ -14,7 +14,7 @@ const idToTemplate = cached(id => {
   return el && el.innerHTML
 })
 
-const mount = Vue.prototype.$mount
+const mount = Vue.prototype.$mount // wsd: runtimeonly版本$mount方法
 Vue.prototype.$mount = function (
   el?: string | Element,
   hydrating?: boolean
