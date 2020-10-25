@@ -1,5 +1,6 @@
 /* @flow */
 
+// wsd: Virtual DOM 除了它的数据结构的定义，映射到真实的 DOM 实际上要经历 VNode 的 create、diff、patch 等过程
 export default class VNode {
   tag: string | void;
   data: VNodeData | void;

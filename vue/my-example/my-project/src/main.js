@@ -6,8 +6,28 @@ import App from './App'
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
+// new Vue({
+//   el: '#app',
+//   components: { App },
+//   template: '<App/>'
+// })
+
+// var app = new Vue({
+//   el: '#app',
+//   render: function (createElement) {
+//     return createElement('div', {
+//       attrs: {
+//         id: 'app'
+//       },
+//     }, this.message)
+//   },
+//   data: {
+//     message: 'Hello Vue!'
+//   }
+// })
+
+var app = new Vue({
   el: '#app',
-  components: { App },
-  template: '<App/>'
+  // 这里的 h 是 createElement 方法
+  render: h => h(App)
 })

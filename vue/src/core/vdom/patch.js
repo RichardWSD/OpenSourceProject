@@ -221,6 +221,7 @@ export function createPatchFunction (backend) {
       // in that case we can just return the element and be done.
       if (isDef(vnode.componentInstance)) {
         initComponent(vnode, insertedVnodeQueue)
+        // wsd: 组件的DOM挂载在这里
         insert(parentElm, vnode.elm, refElm)
         if (isTrue(isReactivated)) {
           reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm)
@@ -741,6 +742,7 @@ export function createPatchFunction (backend) {
           }
           // either not server-rendered, or hydration failed.
           // create an empty node and replace it
+          // wsd: 把真实DOM转成虚拟DOM(vnode)
           oldVnode = emptyNodeAt(oldVnode)
         }
 
@@ -749,6 +751,7 @@ export function createPatchFunction (backend) {
         const parentElm = nodeOps.parentNode(oldElm)
 
         // create new node
+        // wsd: 把vnode挂载到真实DOM上
         createElm(
           vnode,
           insertedVnodeQueue,
@@ -760,6 +763,7 @@ export function createPatchFunction (backend) {
         )
 
         // update parent placeholder node element, recursively
+        // wsd: 父占位节点，跟组件相关
         if (isDef(vnode.parent)) {
           let ancestor = vnode.parent
           const patchable = isPatchable(vnode)

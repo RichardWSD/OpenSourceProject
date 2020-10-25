@@ -61,12 +61,13 @@ export function lifecycleMixin (Vue: Class<Component>) {
     const prevEl = vm.$el
     const prevVnode = vm._vnode
     const restoreActiveInstance = setActiveInstance(vm)
+    // wsd: 渲染vnode
     vm._vnode = vnode
     // Vue.prototype.__patch__ is injected in entry points
     // based on the rendering backend used.
     if (!prevVnode) {
       // initial render
-      vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
+      vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */) // wsd: function patch (oldVnode, vnode, hydrating, removeOnly)
     } else {
       // updates
       vm.$el = vm.__patch__(prevVnode, vnode)
@@ -187,6 +188,8 @@ export function mountComponent (
     }
   } else {
     updateComponent = () => {
+      // wsd: 把vnode渲染成真实DOM
+      // 被调用的时机有 2 个，一个是首次渲染，一个是数据更新的时候
       vm._update(vm._render(), hydrating)
     }
   }

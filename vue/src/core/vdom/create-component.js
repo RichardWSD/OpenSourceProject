@@ -109,9 +109,10 @@ export function createComponent (
     return
   }
 
-  const baseCtor = context.$options._base
+  const baseCtor = context.$options._base // wsd: 这个拿到的是Vue
 
   // plain options object: turn it into a constructor
+  // wsd: 组件构造器继承自Vue
   if (isObject(Ctor)) {
     Ctor = baseCtor.extend(Ctor)
   }
@@ -183,11 +184,12 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
+  // wsd: 组件vnode的data有一些hook，这些hook会和组件vnode的hook进行合并
   installComponentHooks(data)
 
   // return a placeholder vnode
   const name = Ctor.options.name || tag
-  // wsd: 和普通元素节点的 vnode 不同，组件的 vnode 是没有 children 的
+  // wsd: 和普通元素节点的 vnode 不同，组件的 vnode 是没有 children 的，而且组件的vnode名字会加上vue-component开头
   const vnode = new VNode(
     `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
     data, undefined, undefined, undefined, context,
@@ -212,8 +214,8 @@ export function createComponentInstanceForVnode (
 ): Component {
   const options: InternalComponentOptions = {
     _isComponent: true,
-    _parentVnode: vnode,
-    parent
+    _parentVnode: vnode, // wsd: 组件vnode，理解为占位vnode，实际上是个占位节点
+    parent // wsd: 实际上是当前vm实例，作为parent传递给他要渲染的子组件
   }
   // check inline-template render functions
   const inlineTemplate = vnode.data.inlineTemplate

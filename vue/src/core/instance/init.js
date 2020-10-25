@@ -35,6 +35,8 @@ export function initMixin (Vue: Class<Component>) {
       // internal component options needs special treatment.
       initInternalComponent(vm, options)
     } else {
+      // wsd: 把Vue上的options合并到vm的options上
+      // global-api的index.js有一句 Vue.options._base = Vue
       vm.$options = mergeOptions(
         resolveConstructorOptions(vm.constructor),
         options || {},
