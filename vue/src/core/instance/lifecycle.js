@@ -123,6 +123,7 @@ export function lifecycleMixin (Vue: Class<Component>) {
     // call the last hook...
     vm._isDestroyed = true
     // invoke destroy hooks on current rendered tree
+    // wsd: 递归完成整个组件树的destroy销毁工作
     vm.__patch__(vm._vnode, null)
     // fire destroyed hook
     callHook(vm, 'destroyed')
@@ -210,7 +211,7 @@ export function mountComponent (
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
   // wsd: 判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数
-  // vm.$vnode 表示 Vue 实例的父虚拟 Node，所以它为 Null 则表示当前是根 Vue 的实例
+  // wsd: vm.$vnode为null表示是整个应用的根Vue实例，组件的mounted不在这里触发
   if (vm.$vnode == null) {
     vm._isMounted = true
     callHook(vm, 'mounted')

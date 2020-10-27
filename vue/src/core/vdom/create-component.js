@@ -66,9 +66,10 @@ const componentVNodeHooks = {
 
   insert (vnode: MountedComponentVNode) {
     const { context, componentInstance } = vnode
+    // wsd: 组件的mounted方法在这里触发
     if (!componentInstance._isMounted) {
       componentInstance._isMounted = true
-      callHook(componentInstance, 'mounted')
+      callHook(componentInstance, 'mounted') 
     }
     if (vnode.data.keepAlive) {
       if (context._isMounted) {

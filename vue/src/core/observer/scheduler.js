@@ -68,6 +68,7 @@ if (inBrowser && !isIE) {
 /**
  * Flush both queues and run the watchers.
  */
+// wsd: 在$nextTick时会执行这个方法
 function flushSchedulerQueue () {
   currentFlushTimestamp = getNow()
   flushing = true
@@ -87,6 +88,7 @@ function flushSchedulerQueue () {
   // as we run existing watchers
   for (index = 0; index < queue.length; index++) {
     watcher = queue[index]
+    // wsd: beforeUpdate在这里执行
     if (watcher.before) {
       watcher.before()
     }
@@ -118,6 +120,7 @@ function flushSchedulerQueue () {
 
   // call component updated and activated hooks
   callActivatedHooks(activatedQueue)
+  // wsd: updated在这里执行
   callUpdatedHooks(updatedQueue)
 
   // devtool hook

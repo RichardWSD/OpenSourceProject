@@ -29,6 +29,7 @@ export function initMixin (Vue: Class<Component>) {
     // a flag to avoid this being observed
     vm._isVue = true
     // merge options
+    // wsd: 两种方式可以执行到这里：1、外部我们的代码主动调用 new Vue(options) 的方式实例化一个 Vue 对象  2、组件过程中内部通过 new Vue(options) 实例化子组件
     if (options && options._isComponent) {
       // optimize internal component instantiation
       // since dynamic options merging is pretty slow, and none of the
@@ -36,7 +37,8 @@ export function initMixin (Vue: Class<Component>) {
       initInternalComponent(vm, options)
     } else {
       // wsd: 把Vue上的options合并到vm的options上
-      // global-api的index.js有一句 Vue.options._base = Vue
+      // wsd: global-api的index.js有一句 Vue.options._base = Vue
+      // wsd: 全局注册的组件在这里被合并
       vm.$options = mergeOptions(
         resolveConstructorOptions(vm.constructor),
         options || {},
@@ -94,6 +96,7 @@ export function initInternalComponent (vm: Component, options: InternalComponent
 
 export function resolveConstructorOptions (Ctor: Class<Component>) {
   let options = Ctor.options
+  // wsd: 外部new Vue方式不会执行这里
   if (Ctor.super) {
     const superOptions = resolveConstructorOptions(Ctor.super)
     const cachedSuperOptions = Ctor.superOptions

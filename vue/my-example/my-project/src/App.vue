@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     {{ msg }}
-    <!-- <img src="./assets/logo.png">
-    <HelloWorld/> -->
+    <!-- <img src="./assets/logo.png"> -->
+    <HelloWorld/>
   </div>
 </template>
 
