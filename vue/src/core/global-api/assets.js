@@ -27,6 +27,7 @@ export function initAssetRegisters (Vue: GlobalAPI) {
         if (type === 'directive' && typeof definition === 'function') {
           definition = { bind: definition, update: definition }
         }
+        // wsd: 异步组件会走到这里，把工厂函数定义赋值
         this.options[type + 's'][id] = definition
         return definition
       }

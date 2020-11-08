@@ -129,6 +129,7 @@ export function createComponent (
 
   // async component
   let asyncFactory
+  // wsd: 工厂函数没有cid
   if (isUndef(Ctor.cid)) {
     asyncFactory = Ctor
     Ctor = resolveAsyncComponent(asyncFactory, baseCtor)
@@ -136,6 +137,7 @@ export function createComponent (
       // return a placeholder node for async component, which is rendered
       // as a comment node but preserves all the raw information for the node.
       // the information will be used for async server-rendering and hydration.
+      // wsd: 空的vnode返回一个注释节点
       return createAsyncPlaceholder(
         asyncFactory,
         data,

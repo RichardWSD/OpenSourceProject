@@ -1,8 +1,16 @@
 <template>
   <div id="app">
-    {{ msg }}
+    <!-- {{ msg }} -->
     <!-- <img src="./assets/logo.png"> -->
-    <HelloWorld/>
+    <!-- <HelloWorld/> -->
+    <div v-if="flag">
+      {{ msg }}
+    </div>
+    <div v-else>
+      {{ msg1 }}
+    </div>
+    <button @click="change">change</button>
+    <button @click="toggle">toggle</button>
   </div>
 </template>
 
@@ -14,9 +22,32 @@ export default {
   components: {
     HelloWorld
   },
-  data(){
+  // observe
+  /* data(){
     return {
-      msg: 'Hello World!'
+      nested: {
+        msg: 'Hello World!'
+      }
+    }
+  } */
+  data() {
+    return {
+      flag: true,
+      msg: 'Hello World!',
+      msg1: 'Hello Vue'
+    }
+  },
+  watch: {
+    msg() {
+      this.msg = Math.random();
+    }
+  },
+  methods: {
+    change() {
+      this.msg = Math.random(); 
+    },
+    toggle() {
+      this.flag = !this.flag;
     }
   }
 }

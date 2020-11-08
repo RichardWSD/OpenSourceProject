@@ -96,7 +96,7 @@ function flushSchedulerQueue () {
     has[id] = null
     watcher.run()
     // in dev build, check and stop circular updates.
-    if (process.env.NODE_ENV !== 'production' && has[id] != null) {
+    if (process.env.NODE_ENV !== 'production' && has[id] != null) {  // wsd: 我们在某个属性的自定义watch回调中又对该属性值赋与上次不一样的值导致无限循环
       circular[id] = (circular[id] || 0) + 1
       if (circular[id] > MAX_UPDATE_COUNT) {
         warn(
@@ -166,6 +166,7 @@ function callActivatedHooks (queue) {
  */
 export function queueWatcher (watcher: Watcher) {
   const id = watcher.id
+  // wsd: 把所有要执行update的watcher推入到队列中，在nextTick后执行flush，且同一watcher不会反复执行
   if (has[id] == null) {
     has[id] = true
     if (!flushing) {

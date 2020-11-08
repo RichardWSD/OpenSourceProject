@@ -43,6 +43,8 @@ export class Observer {
     this.value = value
     this.dep = new Dep()
     this.vmCount = 0
+    // wsd: 为什么这里不可以直接value.__ob__ = this
+    // 避免我们在指定walk方法的时候对__ob__进行遍历
     def(value, '__ob__', this)
     if (Array.isArray(value)) {
       if (hasProto) {

@@ -23,7 +23,7 @@ let uid = 0
  * and fires callback when the expression value changes.
  * This is used for both the $watch() api and directives.
  */
-export default class Watcher {
+export default class Watcher { // wsd: watch分user watcher和渲染watcher
   vm: Component;
   expression: string;
   cb: Function;
@@ -143,7 +143,7 @@ export default class Watcher {
     let i = this.deps.length
     while (i--) {
       const dep = this.deps[i]
-      if (!this.newDepIds.has(dep.id)) {
+      if (!this.newDepIds.has(dep.id)) { // wsd: 把页面现在新收集到的依赖和旧有依赖比较，新页面不需要观察的sub去掉（因为页面无须显示，所以即使变量值改变了，也不用触发更新的过程）
         dep.removeSub(this)
       }
     }
