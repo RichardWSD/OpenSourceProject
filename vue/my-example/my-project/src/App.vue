@@ -1,16 +1,9 @@
 <template>
   <div id="app">
-    <!-- {{ msg }} -->
-    <!-- <img src="./assets/logo.png"> -->
-    <!-- <HelloWorld/> -->
-    <div v-if="flag">
+    <div ref="msg">
       {{ msg }}
     </div>
-    <div v-else>
-      {{ msg1 }}
-    </div>
     <button @click="change">change</button>
-    <button @click="toggle">toggle</button>
   </div>
 </template>
 
@@ -22,32 +15,24 @@ export default {
   components: {
     HelloWorld
   },
-  // observe
-  /* data(){
-    return {
-      nested: {
-        msg: 'Hello World!'
-      }
-    }
-  } */
   data() {
     return {
-      flag: true,
-      msg: 'Hello World!',
-      msg1: 'Hello Vue'
-    }
-  },
-  watch: {
-    msg() {
-      this.msg = Math.random();
+      msg: 'Hello World!'
     }
   },
   methods: {
     change() {
+      this.$nextTick(() => {
+        console.log('nextTick:', this.$ref.msg.innerText); // 这里会输出Hello World!，因为nextTick内部是通过一个数组的形式调用的，由于这个先push进去，渲染watch后push（所以未执行到它的时候值还没发生变化）
+      })
       this.msg = Math.random(); 
-    },
-    toggle() {
-      this.flag = !this.flag;
+      console.log('sync:',this.$refs.msg.innerText);
+      /* this.$nextTick(() => {
+        console.log('nextTick:', this.$refs.msg.innerText);
+      }) */
+      this.$nextTick().then(() => {
+        console.log('nextTick with promise:', this.$refs.msg.innerText);
+      })
     }
   }
 }
