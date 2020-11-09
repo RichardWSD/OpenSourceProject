@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <div ref="msg">
-      {{ msg }}
+    <div>
+      {{ name }}
     </div>
     <button @click="change">change</button>
+    <button @click="changeLast">change last name</button>
   </div>
 </template>
 
@@ -17,22 +18,25 @@ export default {
   },
   data() {
     return {
-      msg: 'Hello World!'
+      firstName: 'Yi',
+      lastName: 'Huang',
+      useless: 0
+    }
+  },
+  computed: {
+    name() {
+      if(this.useless > 0) {
+        return this.firstName + ',' + this.lastName
+      }
+      return 'please click change'
     }
   },
   methods: {
     change() {
-      this.$nextTick(() => {
-        console.log('nextTick:', this.$ref.msg.innerText); // 这里会输出Hello World!，因为nextTick内部是通过一个数组的形式调用的，由于这个先push进去，渲染watch后push（所以未执行到它的时候值还没发生变化）
-      })
-      this.msg = Math.random(); 
-      console.log('sync:',this.$refs.msg.innerText);
-      /* this.$nextTick(() => {
-        console.log('nextTick:', this.$refs.msg.innerText);
-      }) */
-      this.$nextTick().then(() => {
-        console.log('nextTick with promise:', this.$refs.msg.innerText);
-      })
+      this.useless++;
+    },
+    changeLast() {
+      this.lastName = 'Zhang';
     }
   }
 }

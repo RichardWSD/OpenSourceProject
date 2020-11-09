@@ -49,7 +49,7 @@ export function initExtend (Vue: GlobalAPI) {
     if (Sub.options.props) {
       initProps(Sub)
     }
-    if (Sub.options.computed) {
+    if (Sub.options.computed) { // wsd: 组件的computed属性在这里已经定义
       initComputed(Sub)
     }
 
