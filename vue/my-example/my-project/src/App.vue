@@ -20,7 +20,12 @@ export default {
     return {
       firstName: 'Yi',
       lastName: 'Huang',
-      useless: 0
+      useless: 0,
+      nested: {
+        a: {
+          b: 1
+        }
+      }
     }
   },
   computed: {
@@ -31,9 +36,28 @@ export default {
       return 'please click change'
     }
   },
+  watch: {
+    useless(newVal) {
+      console.log('useless:', newVal);
+    },
+    name: {
+      immediate: true,
+      handler(newVal) {
+        console.log('name:', newVal);
+      }
+    },
+    nested: {
+      deep: true,
+      sync: true, // 不要在nextTick才执行，提升了执行时机
+      handler(newVal) {
+        console.log('nested:', newVal.a.b);
+      }
+    }
+  },
   methods: {
     change() {
       this.useless++;
+      this.nested.a.b = 2;
     },
     changeLast() {
       this.lastName = 'Zhang';

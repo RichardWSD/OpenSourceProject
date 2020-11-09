@@ -23,13 +23,13 @@ let uid = 0
  * and fires callback when the expression value changes.
  * This is used for both the $watch() api and directives.
  */
-export default class Watcher { // wsd: watch分user watcher和渲染watcher
+export default class Watcher { // wsd: watch分user watcher（watch属性定义的）和渲染watcher，还有computed watcher（计算属性）
   vm: Component;
   expression: string;
   cb: Function;
   id: number;
   deep: boolean;
-  user: boolean;
+  user: boolean; // wsd: 代表是个user watcher
   lazy: boolean;
   sync: boolean;
   dirty: boolean;
@@ -114,7 +114,7 @@ export default class Watcher { // wsd: watch分user watcher和渲染watcher
       // "touch" every property so they are all tracked as
       // dependencies for deep watching
       if (this.deep) {
-        traverse(value)
+        traverse(value) // wsd: 深度遍历obj收集依赖
       }
       popTarget()
       this.cleanupDeps()
