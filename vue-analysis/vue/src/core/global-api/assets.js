@@ -17,15 +17,18 @@ export function initAssetRegisters (Vue: GlobalAPI) {
       } else {
         /* istanbul ignore if */
         if (process.env.NODE_ENV !== 'production' && type === 'component') {
+          // wsd: 对组件名进行校验
           validateComponentName(id)
         }
         if (type === 'component' && isPlainObject(definition)) {
+          // wsd: 没有定义name的话就以id为准
           definition.name = definition.name || id
           definition = this.options._base.extend(definition)
         }
         if (type === 'directive' && typeof definition === 'function') {
           definition = { bind: definition, update: definition }
         }
+        // wsd: 异步组件会走到这里，把工厂函数定义赋值
         this.options[type + 's'][id] = definition
         return definition
       }

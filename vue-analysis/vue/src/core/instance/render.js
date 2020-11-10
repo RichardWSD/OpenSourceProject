@@ -27,9 +27,11 @@ export function initRender (vm: Component) {
   // so that we get proper render context inside it.
   // args order: tag, data, children, normalizationType, alwaysNormalize
   // internal version is used by render functions compiled from templates
+  // wsd: 编译出来的模板使用
   vm._c = (a, b, c, d) => createElement(vm, a, b, c, d, false)
   // normalization is always applied for the public version, used in
   // user-written render functions.
+  // wsd: 手写的模板使用
   vm.$createElement = (a, b, c, d) => createElement(vm, a, b, c, d, true)
 
   // $attrs & $listeners are exposed for easier HOC creation.
@@ -76,10 +78,12 @@ export function renderMixin (Vue: Class<Component>) {
 
     // set parent vnode. this allows render functions to have access
     // to the data on the placeholder node.
+    // wsd: 占位符vnode
     vm.$vnode = _parentVnode
     // render self
     let vnode
     try {
+      // wsd: 这个vnode是createElement的返回值
       vnode = render.call(vm._renderProxy, vm.$createElement)
     } catch (e) {
       handleError(e, vm, `render`)
@@ -113,6 +117,8 @@ export function renderMixin (Vue: Class<Component>) {
       vnode = createEmptyVNode()
     }
     // set parent
+    // wsd: 这是渲染vnode，把他的parent指向占位符vnode
+    // wsd: 占位符vnode就是我们自定义的组件标签，渲染vnode就是我们自定义组件的模板的根标签
     vnode.parent = _parentVnode
     return vnode
   }

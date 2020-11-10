@@ -22,13 +22,14 @@ let uid = 0
  * and fires callback when the expression value changes.
  * This is used for both the $watch() api and directives.
  */
+// wsd: watch分user watcher（watch属性定义的）和渲染watcher，还有computed watcher（计算属性）
 export default class Watcher {
   vm: Component;
   expression: string;
   cb: Function;
   id: number;
   deep: boolean;
-  user: boolean;
+  user: boolean; // wsd: 代表是个user watcher
   computed: boolean;
   sync: boolean;
   dirty: boolean;
@@ -117,6 +118,7 @@ export default class Watcher {
       // "touch" every property so they are all tracked as
       // dependencies for deep watching
       if (this.deep) {
+        // wsd: 深度遍历obj收集依赖
         traverse(value)
       }
       popTarget()
@@ -133,6 +135,7 @@ export default class Watcher {
     if (!this.newDepIds.has(id)) {
       this.newDepIds.add(id)
       this.newDeps.push(dep)
+      // wsd: 把页面现在新收集到的依赖和旧有依赖比较，新页面不需要观察的sub去掉（因为页面无须显示，所以即使变量值改变了，也不用触发更新的过程）
       if (!this.depIds.has(id)) {
         dep.addSub(this)
       }

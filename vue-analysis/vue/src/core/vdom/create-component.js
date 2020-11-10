@@ -55,6 +55,7 @@ const componentVNodeHooks = {
   prepatch (oldVnode: MountedComponentVNode, vnode: MountedComponentVNode) {
     const options = vnode.componentOptions
     const child = vnode.componentInstance = oldVnode.componentInstance
+    // wsd: 对组件的子组件进行更新
     updateChildComponent(
       child,
       options.propsData, // updated props
@@ -66,6 +67,7 @@ const componentVNodeHooks = {
 
   insert (vnode: MountedComponentVNode) {
     const { context, componentInstance } = vnode
+    // wsd: 组件的mounted方法在这里触发
     if (!componentInstance._isMounted) {
       componentInstance._isMounted = true
       callHook(componentInstance, 'mounted')
@@ -112,6 +114,7 @@ export function createComponent (
   const baseCtor = context.$options._base
 
   // plain options object: turn it into a constructor
+  // wsd: 组件构造器继承自Vue
   if (isObject(Ctor)) {
     Ctor = baseCtor.extend(Ctor)
   }
@@ -127,6 +130,7 @@ export function createComponent (
 
   // async component
   let asyncFactory
+  // wsd: 工厂函数没有cid
   if (isUndef(Ctor.cid)) {
     asyncFactory = Ctor
     Ctor = resolveAsyncComponent(asyncFactory, baseCtor, context)
@@ -134,6 +138,7 @@ export function createComponent (
       // return a placeholder node for async component, which is rendered
       // as a comment node but preserves all the raw information for the node.
       // the information will be used for async server-rendering and hydration.
+      // wsd: 空的vnode返回一个注释节点
       return createAsyncPlaceholder(
         asyncFactory,
         data,
@@ -183,10 +188,12 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
+  // wsd: 组件vnode的data有一些hook，这些hook会和组件vnode的hook进行合并
   installComponentHooks(data)
 
   // return a placeholder vnode
   const name = Ctor.options.name || tag
+  // wsd: 和普通元素节点的 vnode 不同，组件的 vnode 是没有 children 的，而且组件的vnode名字会加上vue-component开头
   const vnode = new VNode(
     `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
     data, undefined, undefined, undefined, context,
@@ -211,8 +218,8 @@ export function createComponentInstanceForVnode (
 ): Component {
   const options: InternalComponentOptions = {
     _isComponent: true,
-    _parentVnode: vnode,
-    parent
+    _parentVnode: vnode, // wsd: 组件vnode，理解为占位vnode，实际上是个占位节点
+    parent // wsd: 实际上是当前vm实例，作为parent传递给他要渲染的子组件
   }
   // check inline-template render functions
   const inlineTemplate = vnode.data.inlineTemplate

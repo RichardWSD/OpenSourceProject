@@ -9,8 +9,9 @@ let uid = 0
  * A dep is an observable that can have multiple
  * directives subscribing to it.
  */
+// wsd: 建立数据和watcher之间的桥梁
 export default class Dep {
-  static target: ?Watcher;
+  static target: ?Watcher; // wsd: 同一时间只会有一个watcher在计算
   id: number;
   subs: Array<Watcher>;
 

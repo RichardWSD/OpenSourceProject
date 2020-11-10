@@ -36,6 +36,7 @@ export function initExtend (Vue: GlobalAPI) {
     Sub.prototype = Object.create(Super.prototype)
     Sub.prototype.constructor = Sub
     Sub.cid = cid++
+    // wsd: 局部注册的组件在这里被合并到vm.$options，所以只在当前组件下有定义。全局注册的是被合并到Vue.options下，所以大家都能用
     Sub.options = mergeOptions(
       Super.options,
       extendOptions
@@ -48,6 +49,7 @@ export function initExtend (Vue: GlobalAPI) {
     if (Sub.options.props) {
       initProps(Sub)
     }
+    // wsd: 组件的computed属性在这里已经定义
     if (Sub.options.computed) {
       initComputed(Sub)
     }

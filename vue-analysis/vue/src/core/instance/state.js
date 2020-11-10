@@ -42,6 +42,7 @@ export function proxy (target: Object, sourceKey: string, key: string) {
   sharedPropertyDefinition.set = function proxySetter (val) {
     this[sourceKey][key] = val
   }
+  // wsd: 实现可以通过this.msg这种方式访问data中定义的msg
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
@@ -85,6 +86,7 @@ function initProps (vm: Component, propsOptions: Object) {
           vm
         )
       }
+      // wsd: 把对象上的key变成响应式
       defineReactive(props, key, value, () => {
         if (vm.$parent && !isUpdatingChildComponent) {
           warn(
@@ -184,6 +186,7 @@ function initComputed (vm: Component, computed: Object) {
 
     if (!isSSR) {
       // create internal watcher for the computed property.
+      // wsd: computed实际是通过Watch实现的
       watchers[key] = new Watcher(
         vm,
         getter || noop,
@@ -195,6 +198,7 @@ function initComputed (vm: Component, computed: Object) {
     // component-defined computed properties are already defined on the
     // component prototype. We only need to define computed properties defined
     // at instantiation here.
+    // wsd: computed的键值不能和其他属性冲突
     if (!(key in vm)) {
       defineComputed(vm, key, userDef)
     } else if (process.env.NODE_ENV !== 'production') {
@@ -240,6 +244,7 @@ export function defineComputed (
   Object.defineProperty(target, key, sharedPropertyDefinition)
 }
 
+// wsd: 实际我们访问computed属性的时候就是访问的这里
 function createComputedGetter (key) {
   return function computedGetter () {
     const watcher = this._computedWatchers && this._computedWatchers[key]

@@ -34,6 +34,7 @@ const hooks = ['create', 'activate', 'update', 'remove', 'destroy']
 
 function sameVnode (a, b) {
   return (
+    // wsd: 这就是平时我们写的key，不写时undefined === undefined也为true
     a.key === b.key && (
       (
         a.tag === b.tag &&
@@ -141,6 +142,7 @@ export function createPatchFunction (backend) {
     }
 
     vnode.isRootInsert = !nested // for transition enter check
+    // wsd: $vnode为组件的占位node；_vnode为组件的渲染vnode
     if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
       return
     }
@@ -220,6 +222,7 @@ export function createPatchFunction (backend) {
       // in that case we can just return the element and be done.
       if (isDef(vnode.componentInstance)) {
         initComponent(vnode, insertedVnodeQueue)
+        // wsd: 组件的DOM挂载在这里
         insert(parentElm, vnode.elm, refElm)
         if (isTrue(isReactivated)) {
           reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm)
@@ -295,6 +298,7 @@ export function createPatchFunction (backend) {
   }
 
   function isPatchable (vnode) {
+    // wsd: 占位符vnode才有componentInstance,渲染vnode没有
     while (vnode.componentInstance) {
       vnode = vnode.componentInstance._vnode
     }
@@ -533,6 +537,7 @@ export function createPatchFunction (backend) {
       i(oldVnode, vnode)
     }
 
+    // wsd: 普通节点才有children，组件节点是没有children的
     const oldCh = oldVnode.children
     const ch = vnode.children
     if (isDef(data) && isPatchable(vnode)) {
@@ -696,6 +701,9 @@ export function createPatchFunction (backend) {
       isInitialPatch = true
       createElm(vnode, insertedVnodeQueue)
     } else {
+      // wsd: 组件更新的过程核心就是新旧vnode diff，对新旧节点相同以及不同的情况分别做不同的处理
+      // 新旧界定啊不同的更新流程是创建新节点->更新父占位节点->删除旧节点
+      // 新旧节点相同的更新流程是去获取它们的children，根据不同情况做不同的更新逻辑
       const isRealElement = isDef(oldVnode.nodeType)
       if (!isRealElement && sameVnode(oldVnode, vnode)) {
         // patch existing root node
@@ -725,6 +733,7 @@ export function createPatchFunction (backend) {
           }
           // either not server-rendered, or hydration failed.
           // create an empty node and replace it
+          // wsd: 把真实DOM转成虚拟DOM(vnode)
           oldVnode = emptyNodeAt(oldVnode)
         }
 
@@ -733,6 +742,7 @@ export function createPatchFunction (backend) {
         const parentElm = nodeOps.parentNode(oldElm)
 
         // create new node
+        // wsd: 把vnode挂载到真实DOM上
         createElm(
           vnode,
           insertedVnodeQueue,
@@ -744,6 +754,7 @@ export function createPatchFunction (backend) {
         )
 
         // update parent placeholder node element, recursively
+        // wsd: 父占位节点，跟组件相关（vnode为渲染vnode，vnode.parent为占位vnode）
         if (isDef(vnode.parent)) {
           let ancestor = vnode.parent
           const patchable = isPatchable(vnode)

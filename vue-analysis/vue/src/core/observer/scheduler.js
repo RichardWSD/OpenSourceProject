@@ -35,6 +35,7 @@ function resetSchedulerState () {
 /**
  * Flush both queues and run the watchers.
  */
+// wsd: 在$nextTick时会执行这个方法
 function flushSchedulerQueue () {
   flushing = true
   let watcher, id
@@ -53,6 +54,7 @@ function flushSchedulerQueue () {
   // as we run existing watchers
   for (index = 0; index < queue.length; index++) {
     watcher = queue[index]
+    // wsd: beforeUpdate在这里执行
     if (watcher.before) {
       watcher.before()
     }
@@ -60,6 +62,7 @@ function flushSchedulerQueue () {
     has[id] = null
     watcher.run()
     // in dev build, check and stop circular updates.
+    // wsd: 我们在某个属性的自定义watch回调中又对该属性值赋与上次不一样的值导致无限循环
     if (process.env.NODE_ENV !== 'production' && has[id] != null) {
       circular[id] = (circular[id] || 0) + 1
       if (circular[id] > MAX_UPDATE_COUNT) {
@@ -84,6 +87,7 @@ function flushSchedulerQueue () {
 
   // call component updated and activated hooks
   callActivatedHooks(activatedQueue)
+  // wsd: updated在这里执行
   callUpdatedHooks(updatedQueue)
 
   // devtool hook
@@ -129,6 +133,7 @@ function callActivatedHooks (queue) {
  */
 export function queueWatcher (watcher: Watcher) {
   const id = watcher.id
+  // wsd: 把所有要执行update的watcher推入到队列中，在nextTick后执行flush，且同一watcher不会反复执行
   if (has[id] == null) {
     has[id] = true
     if (!flushing) {

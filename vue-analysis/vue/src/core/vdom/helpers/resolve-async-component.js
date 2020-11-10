@@ -12,6 +12,7 @@ import {
 
 import { createEmptyVNode } from 'core/vdom/vnode'
 
+// wsd: 确保es6的module或者commonjs语法都能解析出定义
 function ensureCtor (comp: any, base) {
   if (
     comp.__esModule ||
@@ -63,10 +64,12 @@ export function resolveAsyncComponent (
 
     const forceRender = () => {
       for (let i = 0, l = contexts.length; i < l; i++) {
+        // wsd: 这是异步组件能渲染出来的原因，强制渲染了一次
         contexts[i].$forceUpdate()
       }
     }
 
+    // wsd: once确保函数只执行一次
     const resolve = once((res: Object | Class<Component>) => {
       // cache resolved
       factory.resolved = ensureCtor(res, baseCtor)

@@ -54,11 +54,13 @@ export function lifecycleMixin (Vue: Class<Component>) {
     const prevVnode = vm._vnode
     const prevActiveInstance = activeInstance
     activeInstance = vm
+    // wsd: 渲染vnode
     vm._vnode = vnode
     // Vue.prototype.__patch__ is injected in entry points
     // based on the rendering backend used.
     if (!prevVnode) {
       // initial render
+      // wsd: function patch (oldVnode, vnode, hydrating, removeOnly)
       vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
     } else {
       // updates
@@ -115,6 +117,7 @@ export function lifecycleMixin (Vue: Class<Component>) {
     // call the last hook...
     vm._isDestroyed = true
     // invoke destroy hooks on current rendered tree
+    // wsd: 递归完成整个组件树的destroy销毁工作
     vm.__patch__(vm._vnode, null)
     // fire destroyed hook
     callHook(vm, 'destroyed')
@@ -180,6 +183,7 @@ export function mountComponent (
     }
   } else {
     updateComponent = () => {
+      // wsd: 把vnode渲染成真实DOM
       vm._update(vm._render(), hydrating)
     }
   }
@@ -187,6 +191,7 @@ export function mountComponent (
   // we set this to vm._watcher inside the watcher's constructor
   // since the watcher's initial patch may call $forceUpdate (e.g. inside child
   // component's mounted hook), which relies on vm._watcher being already defined
+  // wsd: Watcher 在这里起到两个作用，一个是初始化的时候会执行回调函数，另一个是当 vm 实例中的监测的数据发生变化的时候执行回调函数
   new Watcher(vm, updateComponent, noop, {
     before () {
       if (vm._isMounted) {
@@ -198,6 +203,8 @@ export function mountComponent (
 
   // manually mounted instance, call mounted on self
   // mounted is called for render-created child components in its inserted hook
+  // wsd: 判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数
+  // wsd: vm.$vnode为null表示是整个应用的根Vue实例，组件的mounted不在这里触发
   if (vm.$vnode == null) {
     vm._isMounted = true
     callHook(vm, 'mounted')
