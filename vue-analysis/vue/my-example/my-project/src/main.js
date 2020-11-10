@@ -98,7 +98,14 @@ const AsyncComponent = () => ({
 })
 Vue.component('HelloWorld', AsyncComponent); */
 
-var app = new Vue({
+/* var app = new Vue({
   el: '#app',
   render: h => h(App)
+}) */
+
+// 编译成render函数过程
+new Vue({
+  el: '#app',
+  components: { App },
+  template: '<App/>'
 })
