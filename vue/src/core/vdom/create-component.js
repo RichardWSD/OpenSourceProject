@@ -55,6 +55,7 @@ const componentVNodeHooks = {
   prepatch (oldVnode: MountedComponentVNode, vnode: MountedComponentVNode) {
     const options = vnode.componentOptions
     const child = vnode.componentInstance = oldVnode.componentInstance
+    // wsd: 对组件的子组件进行更新
     updateChildComponent(
       child,
       options.propsData, // updated props

@@ -1,10 +1,13 @@
 <template>
   <div id="app">
     <div>
-      {{ name }}
+      <ul>
+        <li v-for="item in items" :key="item.id">{{ item.val }}</li>
+      </ul>
     </div>
     <button @click="change">change</button>
-    <button @click="changeLast">change last name</button>
+    <!-- <HelloWorld :flag="flag"></HelloWorld>
+    <button @click="toggle">toggle</button> -->
   </div>
 </template>
 
@@ -18,50 +21,22 @@ export default {
   },
   data() {
     return {
-      firstName: 'Yi',
-      lastName: 'Huang',
-      useless: 0,
-      nested: {
-        a: {
-          b: 1
-        }
-      }
-    }
-  },
-  computed: {
-    name() {
-      if(this.useless > 0) {
-        return this.firstName + ',' + this.lastName
-      }
-      return 'please click change'
-    }
-  },
-  watch: {
-    useless(newVal) {
-      console.log('useless:', newVal);
-    },
-    name: {
-      immediate: true,
-      handler(newVal) {
-        console.log('name:', newVal);
-      }
-    },
-    nested: {
-      deep: true,
-      sync: true, // 不要在nextTick才执行，提升了执行时机
-      handler(newVal) {
-        console.log('nested:', newVal.a.b);
-      }
+      items: [
+        {id: 0, val: 'A'},
+        {id: 1, val: 'B'},
+        {id: 2, val: 'C'},
+        {id: 3, val: 'D'}
+      ]
+      // flag: false
     }
   },
   methods: {
     change() {
-      this.useless++;
-      this.nested.a.b = 2;
-    },
-    changeLast() {
-      this.lastName = 'Zhang';
+      this.items.reverse().push({id: 4, val: 'E'})
     }
+    // toggle() {
+    //   this.flag = !this.flag;
+    // }
   }
 }
 </script>
