@@ -37,6 +37,7 @@ export function parseText (
       tokens.push(JSON.stringify(tokenValue))
     }
     // tag token
+    // wsd: 对filter作处理
     const exp = parseFilters(match[1].trim())
     tokens.push(`_s(${exp})`)
     rawTokens.push({ '@binding': exp })

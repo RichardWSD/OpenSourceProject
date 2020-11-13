@@ -49,7 +49,7 @@ export function createASTElement (
   parent: ASTElement | void
 ): ASTElement {
   return {
-    type: 1,
+    type: 1, // wsd: type为1代表普通元素
     tag,
     attrsList: attrs,
     attrsMap: makeAttrsMap(attrs),
@@ -145,6 +145,7 @@ export function parse (
       }
 
       if (!inVPre) {
+        // wsd: 跟v-pre指令相关
         processPre(element)
         if (element.pre) {
           inVPre = true
@@ -164,6 +165,7 @@ export function parse (
         processElement(element, options)
       }
 
+      // wsd: 对根节点的一些约束，不能是slot、template以及还有v-for（因为根节点只能有一个）
       function checkRootConstraints (el) {
         if (process.env.NODE_ENV !== 'production') {
           if (el.tag === 'slot' || el.tag === 'template') {
@@ -213,6 +215,7 @@ export function parse (
           element.parent = currentParent
         }
       }
+      // wsd: 是否自闭合
       if (!unary) {
         currentParent = element
         stack.push(element)
@@ -221,6 +224,7 @@ export function parse (
       }
     },
 
+    // wsd: 解析闭合标签时调用
     end () {
       // remove trailing whitespace
       const element = stack[stack.length - 1]
@@ -266,14 +270,14 @@ export function parse (
         let res
         if (!inVPre && text !== ' ' && (res = parseText(text, delimiters))) {
           children.push({
-            type: 2,
+            type: 2, // wsd: type为2代表表达式
             expression: res.expression,
             tokens: res.tokens,
             text
           })
         } else if (text !== ' ' || !children.length || children[children.length - 1].text !== ' ') {
           children.push({
-            type: 3,
+            type: 3, // wsd: type为3代表纯文本节点
             text
           })
         }
@@ -281,7 +285,7 @@ export function parse (
     },
     comment (text: string) {
       currentParent.children.push({
-        type: 3,
+        type: 3, // wsd: type为3且isComment为true代表注释节点
         text,
         isComment: true
       })
@@ -325,6 +329,7 @@ export function processElement (element: ASTElement, options: CompilerOptions) {
   for (let i = 0; i < transforms.length; i++) {
     element = transforms[i](element, options) || element
   }
+  // wsd: 处理事件
   processAttrs(element)
 }
 

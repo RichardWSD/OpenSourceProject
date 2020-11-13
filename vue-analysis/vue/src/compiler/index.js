@@ -13,6 +13,8 @@ export const createCompiler = createCompilerCreator(function baseCompile (
   template: string,
   options: CompilerOptions
 ): CompiledResult {
+  // wsd: ast是js对象，是对模板的一种描述（是一种抽象语法树，是对源代码的抽象语法结构的树状表现形式）
+  // wsd: AST 是一个树状结构，每一个节点都是一个 ast element，除了它自身的一些属性，还维护了它的父子关系
   const ast = parse(template.trim(), options)
   if (options.optimize !== false) {
     optimize(ast, options)

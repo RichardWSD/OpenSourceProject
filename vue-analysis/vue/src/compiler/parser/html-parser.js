@@ -214,6 +214,7 @@ export function parseHTML (html, options) {
     const unarySlash = match.unarySlash
 
     if (expectHTML) {
+      // wsd: 对p标签中的内容特殊处理-- http://blog.shaochuancs.com/w3c-html5-content-model/
       if (lastTag === 'p' && isNonPhrasingTag(tagName)) {
         parseEndTag(lastTag)
       }
