@@ -42,7 +42,7 @@ function markStatic (node: ASTNode) {
     // 1. components not able to mutate slot nodes
     // 2. static slot content fails for hot-reloading
     if (
-      !isPlatformReservedTag(node.tag) &&
+      !isPlatformReservedTag(node.tag) && // wsd: 说明是个组件
       node.tag !== 'slot' &&
       node.attrsMap['inline-template'] == null
     ) {
@@ -57,6 +57,7 @@ function markStatic (node: ASTNode) {
     }
     if (node.ifConditions) {
       for (let i = 1, l = node.ifConditions.length; i < l; i++) {
+        // wsd: 判断elseif 和 else的节点
         const block = node.ifConditions[i].block
         markStatic(block)
         if (!block.static) {

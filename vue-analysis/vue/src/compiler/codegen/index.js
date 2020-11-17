@@ -45,6 +45,7 @@ export function generate (
   const code = ast ? genElement(ast, state) : '_c("div")'
   return {
     render: `with(this){return ${code}}`,
+    // wsd: optimize介绍的staticRoots生成的代码放这里
     staticRenderFns: state.staticRenderFns
   }
 }
@@ -175,6 +176,7 @@ export function genFor (
   const iterator1 = el.iterator1 ? `,${el.iterator1}` : ''
   const iterator2 = el.iterator2 ? `,${el.iterator2}` : ''
 
+  // wsd: 普通元素v-for可以不传key，但是组件一定要传
   if (process.env.NODE_ENV !== 'production' &&
     state.maybeComponent(el) &&
     el.tag !== 'slot' &&

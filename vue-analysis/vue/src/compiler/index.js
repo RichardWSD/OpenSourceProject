@@ -19,6 +19,7 @@ export const createCompiler = createCompilerCreator(function baseCompile (
   if (options.optimize !== false) {
     optimize(ast, options)
   }
+  // wsd: 把优化后的 AST 树转换成可执行的代码
   const code = generate(ast, options)
   return {
     ast,
