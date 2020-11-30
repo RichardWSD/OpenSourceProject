@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Tutorials</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+</body>
+
+<script>
+  let Child = {
+    // 注意，这里只能写$event，因为源码 return `function($event){${handler.value}}`
+    // 当我们直接以函数调用方式去写事件处理方法的时候，实际上vue会帮我们包裹上一层函数定义，参数为$event，函数体handler.value是我们写的clickHandler($event)
+    // 所以我们只能直接使用$event参数了，不能自己写成另外的名字
+    template: '<button @click="clickHandler($event)">' +
+      'click me' +
+      '</button>',
+    methods: {
+      clickHandler(e) {
+        console.log('Button clicked!', e)
+        this.$emit('select')
+      }
+    }
+  }
+
+  let vm = new Vue({
+    el: '#app',
+    template: '<div>' +
+      '<child @select="selectHandler" @click.native.prevent="clickHandler"></child>' +
+      '</div>',
+    methods: {
+      clickHandler() {
+        console.log('Child clicked!')
+      },
+      selectHandler() {
+        console.log('Child select!')
+      }
+    },
+    components: {
+      Child
+    }
+  })
+</script>
+
+</html>

@@ -39,6 +39,7 @@ export function updateComponentListeners (
   oldListeners: ?Object
 ) {
   target = vm
+  // wsd: 自定义事件与原生DOM事件不同的地方在于add参数不同
   updateListeners(listeners, oldListeners || {}, add, remove, vm)
   target = undefined
 }
@@ -88,6 +89,7 @@ export function eventsMixin (Vue: Class<Component>) {
       return vm
     }
     // specific event
+    // wsd: 没有指定要删的fn就全部删掉，否则就只删指定的那个
     const cbs = vm._events[event]
     if (!cbs) {
       return vm
@@ -111,6 +113,7 @@ export function eventsMixin (Vue: Class<Component>) {
     return vm
   }
 
+  // wsd: 实际上$emit派发的只是绑定到自身的事件，但是因为平时我们写的模板<child @select="selectHandler">这个selectHanlder是父组件的函数，所以才达到的父子组件通信的功能
   Vue.prototype.$emit = function (event: string): Component {
     const vm: Component = this
     if (process.env.NODE_ENV !== 'production') {

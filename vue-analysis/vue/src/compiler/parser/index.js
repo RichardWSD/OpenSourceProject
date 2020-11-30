@@ -525,6 +525,7 @@ function processAttrs (el) {
       // mark element as dynamic
       el.hasBindings = true
       // modifiers
+      // wsd: 对事件的修饰符作处理
       modifiers = parseModifiers(name)
       if (modifiers) {
         name = name.replace(modifierRE, '')

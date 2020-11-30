@@ -32,6 +32,7 @@ function createOnceHandler (handler, event, capture) {
   const _target = target // save current target element in closure
   return function onceHandler () {
     const res = handler.apply(null, arguments)
+    // wsd: 返回null就不会只执行一次？
     if (res !== null) {
       remove(event, onceHandler, capture, _target)
     }
@@ -45,6 +46,7 @@ function add (
   capture: boolean,
   passive: boolean
 ) {
+  // wsd: 保证执行时useMacroTask为true
   handler = withMacroTask(handler)
   if (once) handler = createOnceHandler(handler, event, capture)
   target.addEventListener(
@@ -76,6 +78,7 @@ function updateDOMListeners (oldVnode: VNodeWithData, vnode: VNodeWithData) {
   const on = vnode.data.on || {}
   const oldOn = oldVnode.data.on || {}
   target = vnode.elm
+  // wsd: 这个处理v-model
   normalizeEvents(on)
   updateListeners(on, oldOn, add, remove, vnode.context)
   target = undefined

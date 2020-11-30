@@ -173,6 +173,8 @@ export function createComponent (
   const listeners = data.on
   // replace with listeners with .native modifier
   // so it gets processed during parent component patch.
+  // wsd: 组件有自定义事件和原生DOM事件，而普通节点只有原生DOM事件
+  // wsd: 这里组件先把自定义事件保存起来，然后把原生DOM事件赋值给data.on，这就是为什么组件的data.on对应了原生事件
   data.on = data.nativeOn
 
   if (isTrue(Ctor.options.abstract)) {
