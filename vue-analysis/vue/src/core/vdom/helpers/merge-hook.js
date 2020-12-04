@@ -6,6 +6,7 @@ import { remove, isDef, isUndef, isTrue } from 'shared/util'
 
 export function mergeVNodeHook (def: Object, hookKey: string, hook: Function) {
   if (def instanceof VNode) {
+    // wsd:　对于组件data有hook，普通节点data没有hook
     def = def.data.hook || (def.data.hook = {})
   }
   let invoker

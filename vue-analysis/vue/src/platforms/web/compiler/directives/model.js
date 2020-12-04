@@ -44,8 +44,10 @@ export default function model (
   } else if (tag === 'input' && type === 'radio') {
     genRadioModel(el, value, modifiers)
   } else if (tag === 'input' || tag === 'textarea') {
+    // wsd: 表单元素使用v-model
     genDefaultModel(el, value, modifiers)
   } else if (!config.isReservedTag(tag)) {
+    //wsd: 组件使用v-model
     genComponentModel(el, value, modifiers)
     // component v-model doesn't need extra runtime
     return false
@@ -164,6 +166,7 @@ function genDefaultModel (
     code = `if($event.target.composing)return;${code}`
   }
 
+  // wsd: v-model相当于是:value="xxx" @input="xxx=$event.target.value"
   addProp(el, 'value', `(${value})`)
   addHandler(el, event, code, null, true)
   if (trim || number) {

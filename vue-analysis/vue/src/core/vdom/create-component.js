@@ -156,6 +156,7 @@ export function createComponent (
   resolveConstructorOptions(Ctor)
 
   // transform component v-model data into props & events
+  // wsd: 转换v-model成prop和事件
   if (isDef(data.model)) {
     transformModel(Ctor.options, data)
   }
