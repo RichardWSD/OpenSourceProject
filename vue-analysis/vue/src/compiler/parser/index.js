@@ -493,6 +493,7 @@ function processSlot (el) {
       }
       el.slotScope = slotScope
     }
+    // wsd：获取到绑定在标签上slot的值
     const slotTarget = getBindingAttr(el, 'slot')
     if (slotTarget) {
       el.slotTarget = slotTarget === '""' ? '"default"' : slotTarget
