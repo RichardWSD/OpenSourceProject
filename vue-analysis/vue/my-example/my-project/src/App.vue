@@ -1,13 +1,6 @@
 <template>
   <div id="app">
-    <div>
-      <ul>
-        <li v-for="item in items" :key="item.id">{{ item.val }}</li>
-      </ul>
-    </div>
-    <button @click="change">change</button>
-    <!-- <HelloWorld :flag="flag"></HelloWorld>
-    <button @click="toggle">toggle</button> -->
+    <HelloWorld :flag="flag"></HelloWorld>
   </div>
 </template>
 
@@ -21,22 +14,11 @@ export default {
   },
   data() {
     return {
-      items: [
-        {id: 0, val: 'A'},
-        {id: 1, val: 'B'},
-        {id: 2, val: 'C'},
-        {id: 3, val: 'D'}
-      ]
-      // flag: false
+      flag: false
     }
   },
   methods: {
-    change() {
-      this.items.reverse().push({id: 4, val: 'E'})
-    }
-    // toggle() {
-    //   this.flag = !this.flag;
-    // }
+    
   }
 }
 </script>

@@ -14,6 +14,7 @@ function Vue (options) {
   this._init(options)
 }
 
+// wsd: 这些都是挂载一些方法到Vue原型上
 initMixin(Vue)
 stateMixin(Vue)
 eventsMixin(Vue)

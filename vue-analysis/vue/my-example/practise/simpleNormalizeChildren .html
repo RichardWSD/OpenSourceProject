@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function simpleNormalizeChildren(children) {
+      for (let i = 0; i < children.length; i++) {
+        if (Array.isArray(children[i])) {
+          return Array.prototype.concat.apply([], children)
+        }
+      }
+      return children
+    }
+
+    res = simpleNormalizeChildren([1, [11, 22, 33], 23])
+  </script>
+</body>
+
+</html>
