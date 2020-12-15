@@ -5,14 +5,17 @@ import { extend, warn, isObject } from 'core/util/index'
 /**
  * Runtime helper for rendering <slot>
  */
+// wsd: 运行时解析slot
 export function renderSlot (
   name: string,
-  fallback: ?Array<VNode>,
+  fallback: ?Array<VNode>, // wsd: 默认插槽内容
   props: ?Object,
   bindObject: ?Object
 ): ?Array<VNode> {
   const scopedSlotFn = this.$scopedSlots[name]
   let nodes
+  // wsd: 把父组件slot-scopes部分的vnode create过程放到子组件的创建过程中，这里包装成了一个函数
+  // 所以slot-scopes才可以访问子组件中的数据
   if (scopedSlotFn) { // scoped slot
     props = props || {}
     if (bindObject) {
