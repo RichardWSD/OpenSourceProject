@@ -102,6 +102,7 @@ function callUpdatedHooks (queue) {
   while (i--) {
     const watcher = queue[i]
     const vm = watcher.vm
+    // wsd: 渲染watcher且已经挂载则触发updated钩子
     if (vm._watcher === watcher && vm._isMounted) {
       callHook(vm, 'updated')
     }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Tutorials</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <!-- 实际上vue会把这个div用编译出来的模板替换掉 -->
+  <div id="vue-app">
+  </div>
+</body>
+
+<script>
+  let childComp = {
+    template: '<div>{{msg}}</div>',
+    created() {
+      console.log('child created')
+    },
+    data() {
+      return {
+        msg: 'Hello Vue'
+      }
+    }
+  }
+
+  Vue.mixin({
+    created: function () {
+      console.log('global created');
+    }
+  })
+
+  new Vue({
+    el: '#vue-app',
+    render: h => h(childComp)
+  })
+</script>
+
+</html>
