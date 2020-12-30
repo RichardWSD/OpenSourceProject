@@ -184,6 +184,7 @@ export default class Watcher {
         // In activated mode, we want to proactively perform the computation
         // but only notify our subscribers when the value has indeed changed.
         this.getAndInvoke(() => {
+          // wsd: 通知渲染watcher，user watcher做渲染/执行callback函数
           this.dep.notify()
         })
       }

@@ -19,15 +19,18 @@ export function createMatcher (
 ): Matcher {
   const { pathList, pathMap, nameMap } = createRouteMap(routes)
 
+  // wsd: 给动态添加的路由提供入口
   function addRoutes (routes) {
     createRouteMap(routes, pathList, pathMap, nameMap)
   }
 
+  // wsd: 根据传入的location和当前路径计算出新的路径，从而匹配到相应组件
   function match (
     raw: RawLocation,
     currentRoute?: Route,
     redirectedFrom?: Location
   ): Route {
+    // wsd: 对于normalizeLocation这些辅助函数，如果我们无须关注具体细节，可以直接看单元测试了解输入输出就可以了
     const location = normalizeLocation(raw, currentRoute, false, router)
     const { name } = location
 
@@ -68,6 +71,7 @@ export function createMatcher (
       }
     }
     // no match
+    // wsd: 这种是匹配不到组件的
     return _createRoute(null, location)
   }
 

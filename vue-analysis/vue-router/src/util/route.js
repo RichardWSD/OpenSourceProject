@@ -5,6 +5,7 @@ import { stringifyQuery } from './query'
 
 const trailingSlashRE = /\/?$/
 
+// wsd: 根据location和record计算路径
 export function createRoute (
   record: ?RouteRecord,
   location: Location,

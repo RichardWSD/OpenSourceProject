@@ -76,6 +76,7 @@ declare type RouteRecord = {
   props: boolean | Object | Function | Dictionary<boolean | Object | Function>;
 }
 
+// wsd: 位置信息描述
 declare type Location = {
   _normalized?: boolean;
   name?: string;
@@ -89,6 +90,7 @@ declare type Location = {
 
 declare type RawLocation = string | Location
 
+// wsd: 路径描述
 declare type Route = {
   path: string;
   name: ?string;

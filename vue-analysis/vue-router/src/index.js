@@ -46,6 +46,7 @@ export default class VueRouter {
     if (this.fallback) {
       mode = 'hash'
     }
+    // wsd: 抽象模式在非浏览器模式下使用
     if (!inBrowser) {
       mode = 'abstract'
     }

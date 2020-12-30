@@ -20,12 +20,14 @@ export function install (Vue) {
 
   Vue.mixin({
     beforeCreate () {
+      // wsd: 根实例
       if (isDef(this.$options.router)) {
         this._routerRoot = this
         this._router = this.$options.router
         this._router.init(this)
         Vue.util.defineReactive(this, '_route', this._router.history.current)
       } else {
+        // wsd: 非根实例也可以通过this._routerRoot来访问根实例
         this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
       }
       registerInstance(this, this)

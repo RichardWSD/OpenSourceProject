@@ -61,8 +61,10 @@ export class History {
     this.errorCbs.push(errorCb)
   }
 
+  // wsd: 路径切换
   transitionTo (location: RawLocation, onComplete?: Function, onAbort?: Function) {
     const route = this.router.match(location, this.current)
+    // wsd: 真正去完成路由切换
     this.confirmTransition(route, () => {
       this.updateRoute(route)
       onComplete && onComplete(route)
@@ -86,6 +88,7 @@ export class History {
 
   confirmTransition (route: Route, onComplete: Function, onAbort?: Function) {
     const current = this.current
+    // wsd: 取消跳转
     const abort = err => {
       if (isError(err)) {
         if (this.errorCbs.length) {

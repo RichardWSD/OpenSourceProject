@@ -60,6 +60,7 @@ function addRouteRecord (
   }
 
   const pathToRegexpOptions: PathToRegexpOptions = route.pathToRegexpOptions || {}
+  // wsd: 根据path,parent做一个路径计算
   const normalizedPath = normalizePath(
     path,
     parent,
