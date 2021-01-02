@@ -129,11 +129,13 @@ export class History {
     )
 
     this.pending = route
+    // wsd: 在runQueue执行fn就是在执行iterator
     const iterator = (hook: NavigationGuard, next) => {
       if (this.pending !== route) {
         return abort()
       }
       try {
+        // wsd: 这个就是在执行定义的钩子函数
         hook(route, current, (to: any) => {
           if (to === false || isError(to)) {
             // next(false) -> abort navigation, ensure current URL
@@ -155,6 +157,7 @@ export class History {
             }
           } else {
             // confirm transition and pass on the value
+            // wsd: 调用这个next就会让runQueue中的队列加一
             next(to)
           }
         })
@@ -168,6 +171,7 @@ export class History {
       const isValid = () => this.current === route
       // wait until async components are resolved before
       // extracting in-component enter guards
+      // wsd: beforeRouteEnter在回调中执行的原因是需要等待异步组件完成，这时候才能获取到组件的定义
       const enterGuards = extractEnterGuards(activated, postEnterCbs, isValid)
       const queue = enterGuards.concat(this.router.resolveHooks)
       runQueue(queue, iterator, () => {
@@ -244,6 +248,7 @@ function extractGuards (
   reverse?: boolean
 ): Array<?Function> {
   const guards = flatMapComponents(records, (def, instance, match, key) => {
+    // wsd: 拿到组件定义的钩子函数
     const guard = extractGuard(def, name)
     if (guard) {
       return Array.isArray(guard)
@@ -266,6 +271,7 @@ function extractGuard (
 }
 
 function extractLeaveGuards (deactivated: Array<RouteRecord>): Array<?Function> {
+  // wsd: 因为deactivated参数是先父后子，所以reverse参数传true保证调用顺序是先子后父
   return extractGuards(deactivated, 'beforeRouteLeave', bindGuard, true)
 }
 

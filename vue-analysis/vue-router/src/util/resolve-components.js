@@ -15,6 +15,7 @@ export function resolveAsyncComponents (matched: Array<RouteRecord>): Function {
       // we are not using Vue's default async resolving mechanism because
       // we want to halt the navigation until the incoming component has been
       // resolved.
+      // wsd: 异步组件
       if (typeof def === 'function' && def.cid === undefined) {
         hasAsync = true
         pending++
@@ -76,7 +77,7 @@ export function flatMapComponents (
   return flatten(matched.map(m => {
     return Object.keys(m.components).map(key => fn(
       m.components[key],
-      m.instances[key],
+      m.instances[key], //wsd: 组件实例
       m, key
     ))
   }))
