@@ -112,6 +112,7 @@ export default class VueRouter {
       )
     }
 
+    // wsd: 监听路由变化时改变_route，从而导致视图的变化
     history.listen(route => {
       this.apps.forEach((app) => {
         app._route = route

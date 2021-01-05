@@ -25,11 +25,13 @@ export function install (Vue) {
         this._routerRoot = this
         this._router = this.$options.router
         this._router.init(this)
+        // wsd: 路由改变时视图变化的原因
         Vue.util.defineReactive(this, '_route', this._router.history.current)
       } else {
         // wsd: 非根实例也可以通过this._routerRoot来访问根实例
         this._routerRoot = (this.$parent && this.$parent._routerRoot) || this
       }
+      // wsd: 注册组件实例
       registerInstance(this, this)
     },
     destroyed () {
