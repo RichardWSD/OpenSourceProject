@@ -190,6 +190,7 @@ export class Store {
     resetStore(this, true)
   }
 
+  // wsd: 确保提交commit的方式改变state
   _withCommit (fn) {
     const committing = this._committing
     this._committing = true
@@ -231,6 +232,7 @@ function resetStoreVM (store, state, hot) {
   const computed = {}
   forEachValue(wrappedGetters, (fn, key) => {
     // use computed to leverage its lazy-caching mechanism
+    // wsd: fn就是我们定义的getter
     computed[key] = () => fn(store)
     Object.defineProperty(store.getters, key, {
       get: () => store._vm[key],
@@ -286,6 +288,7 @@ function installModule (store, rootState, path, module, hot) {
     })
   }
 
+  // wsd: a模块提交xxx mutation,actions等的时候可以识别成a/xxx的原因
   const local = module.context = makeLocalContext(store, namespace, path)
 
   module.forEachMutation((mutation, key) => {
@@ -438,6 +441,7 @@ function registerGetter (store, type, rawGetter, local) {
   }
 }
 
+// wsd: 在开发模式下，如果不是通过提交mutation方式改变state则会报警告
 function enableStrictMode (store) {
   store._vm.$watch(function () { return this._data.$$state }, () => {
     if (process.env.NODE_ENV !== 'production') {
