@@ -63,6 +63,7 @@ Vue.prototype.$mount = function (
         mark('compile')
       }
 
+      // wsd: 编译入口
       const { render, staticRenderFns } = compileToFunctions(template, {
         shouldDecodeNewlines,
         shouldDecodeNewlinesForHref,
