@@ -203,6 +203,7 @@
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
+    // 同时是最后一个孩子和第一个孩子
     &:first-child:last-child {
       border-top-right-radius: $--button-border-radius;
       border-bottom-right-radius: $--button-border-radius;
