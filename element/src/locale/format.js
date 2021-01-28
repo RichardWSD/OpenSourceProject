@@ -1,5 +1,6 @@
 import { hasOwn } from 'element-ui/src/utils/util';
 
+// 前面有百分号或者空
 const RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 /**
  *  String format template
