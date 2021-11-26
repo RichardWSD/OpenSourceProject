@@ -391,6 +391,7 @@ function getStateFromUpdate<State>(
   return prevState;
 }
 
+// wsd: 根据baseState和update计算新的state
 export function processUpdateQueue<State>(
   workInProgress: Fiber,
   props: any,
@@ -432,6 +433,7 @@ export function processUpdateQueue<State>(
     // queue is a singly-linked list with no cycles, we can append to both
     // lists and take advantage of structural sharing.
     // TODO: Pass `current` as argument
+    // wsd: 防止update丢失
     const current = workInProgress.alternate;
     if (current !== null) {
       // This is always non-null on a ClassComponent or HostRoot
