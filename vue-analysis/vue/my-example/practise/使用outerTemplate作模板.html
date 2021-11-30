@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>VueJS Tutorials</title>
+        <script src="./vue.js"></script>
+    </head>
+    <body>
+      <div id="example_outerHTML">
+        <div>{{ msg }}</div>
+    </div>
+    </body>
+    <!-- https://www.lagou.com/lgeduarticle/21245.html -->
+    <script>
+      // el = document.querySelector('#example_outerHTML')
+      new Vue({
+    el: '#example_outerHTML',
+    data: {
+        msg: "HELLO VUE by outerHTML"
+    }
+})
+    </script>
+</html>
