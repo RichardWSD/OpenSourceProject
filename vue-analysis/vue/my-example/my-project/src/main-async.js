@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App-AsyncComponent.vue'
 
-/************ 异步组件 ************/ 
+/** ********** 异步组件 ************/
 // require方式
 /* Vue.component('HelloWorld', (resolve, reject) => {
   // 这个特殊的 `require` 语法将会告诉 webpack
@@ -10,16 +10,23 @@ import App from './App-AsyncComponent.vue'
   require(['./components/HelloWorld'], resolve)
 }) */
 
-//promise方式
+// promise方式
 // Vue.component('HelloWorld', () => import('./components/HelloWorld'));
 
 // 高级组件方式
-const LoadingComponent = {
+const LoadingComponent =
+{
+
+
+
+
+
+  
   template: '<div>loading</div>'
-};
+}
 const ErrorComponent = {
   template: '<div>error</div>'
-};
+}
 const AsyncComponent = () => ({
   // 需要加载的组件 (应该是一个 `Promise` 对象)
   component: import('./components/HelloWorld'),
@@ -33,9 +40,10 @@ const AsyncComponent = () => ({
   // 则使用加载失败时使用的组件。默认值是：`Infinity`
   timeout: 1000
 })
-Vue.component('HelloWorld', AsyncComponent); 
+Vue.component('HelloWorld', AsyncComponent)
 
-var app = new Vue({
+// eslint-disable-next-line
+const app = new Vue({
   el: '#app',
   render: h => h(App)
 })

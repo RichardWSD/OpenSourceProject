@@ -168,6 +168,7 @@ export const capitalize = cached((str: string): string => {
 /**
  * Hyphenate a camelCase string.
  */
+// wsd: \B 是指 非 \B 单词边界。 eg: WordPress -> word-press
 const hyphenateRE = /\B([A-Z])/g
 export const hyphenate = cached((str: string): string => {
   return str.replace(hyphenateRE, '-$1').toLowerCase()
@@ -230,6 +231,7 @@ export function extend (to: Object, _from: ?Object): Object {
 /**
  * Merge an Array of Objects into a single Object.
  */
+// wsd: eg [{age: 12}, {name: 'jerry', age: 24}, {major: 'js'}] -> {age: 24, name: 'jerry', major: 'js'}
 export function toObject (arr: Array<any>): Object {
   const res = {}
   for (let i = 0; i < arr.length; i++) {
