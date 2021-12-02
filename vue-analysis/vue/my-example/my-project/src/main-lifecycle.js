@@ -3,10 +3,10 @@ import Vue from 'vue'
 let childComp = {
   template: '<div>{{msg}}</div>',
   created() {
-    console.log('child created')
+    console.log('%c child created', 'color:green')
   },
   mounted() {
-    console.log('child mounted')
+    console.log('%c child mounted', 'color:green')
   },
   data() {
     return {
@@ -16,7 +16,7 @@ let childComp = {
 }
 Vue.mixin({
   created() {
-    console.log('parent created')
+    console.log('%c parent created', 'color:green')
   }
 })
 let app = new Vue({
