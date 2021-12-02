@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div>我是普通标签，下面那个才是组件节点</div>
     <HelloWorld :flag="flag"></HelloWorld>
   </div>
 </template>
@@ -12,13 +13,13 @@ export default {
   components: {
     HelloWorld
   },
-  data() {
+  data () {
     return {
       flag: false
     }
   },
   methods: {
-    
+
   }
 }
 </script>

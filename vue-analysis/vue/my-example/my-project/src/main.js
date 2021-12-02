@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import App from './App1'
+import App from './App-createComponent'
 
 Vue.config.productionTip = false
 

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "baseUrl": ".",
+    "paths": {
+      "vue/*": ["src/platforms/web/entry-runtime-with-compiler/*"],
+      "compiler/*": ["src/compiler/*"],
+      "core/*": ["src/core/*"],
+      "shared/*": ["src/shared/*"],
+      "web/*": ["src/platforms/web/*"],
+      "weex/*": ["src/platforms/weex/*"],
+      "server/*": ["src/server/*"],
+      "entries/*": ["src/entries/*"],
+      "sfc/*": ["src/sfc/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"],
+  "include": [
+    "./src/**/*.vue",
+    "./src/**/*.js"
+  ]
+}

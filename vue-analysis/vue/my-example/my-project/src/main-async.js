@@ -16,12 +16,6 @@ import App from './App-AsyncComponent.vue'
 // 高级组件方式
 const LoadingComponent =
 {
-
-
-
-
-
-  
   template: '<div>loading</div>'
 }
 const ErrorComponent = {

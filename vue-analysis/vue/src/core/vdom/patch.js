@@ -215,6 +215,8 @@ export function createPatchFunction (backend) {
     if (isDef(i)) {
       const isReactivated = isDef(vnode.componentInstance) && i.keepAlive
       if (isDef(i = i.hook) && isDef(i = i.init)) {
+        // wsd: 在这里又会开始组建的创建过程，生成vnode以及patch组件内部的dom节点，生成组件内部的组建树后在下面
+        // insert方法插入组件所在的父节点的dom元素上
         i(vnode, false /* hydrating */)
       }
       // after calling the init hook, if the vnode is a child component
@@ -238,6 +240,7 @@ export function createPatchFunction (backend) {
       insertedVnodeQueue.push.apply(insertedVnodeQueue, vnode.data.pendingInsert)
       vnode.data.pendingInsert = null
     }
+    // wsd: 这里会把组件实例挂载的dom元素给到vnode
     vnode.elm = vnode.componentInstance.$el
     if (isPatchable(vnode)) {
       invokeCreateHooks(vnode, insertedVnodeQueue)
@@ -794,6 +797,7 @@ export function createPatchFunction (backend) {
       }
     }
 
+    //wsd: 当isInitialPatch为false的时候进去调用vnode的data.hook的insert方法，进而调用到组件的mounted方法
     invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch)
     return vnode.elm
   }

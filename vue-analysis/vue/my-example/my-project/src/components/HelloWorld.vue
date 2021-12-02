@@ -16,8 +16,8 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  mounted() {
-    console.log('子mounted');
+  mounted () {
+    console.log('子mounted')
   }
 }
 </script>
