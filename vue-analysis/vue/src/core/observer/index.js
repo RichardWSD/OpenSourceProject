@@ -154,6 +154,7 @@ export function defineReactive (
     val = obj[key]
   }
 
+  // wsd: 如果value是对象这里会递归去observe
   let childOb = !shallow && observe(val)
   Object.defineProperty(obj, key, {
     enumerable: true,
@@ -161,6 +162,7 @@ export function defineReactive (
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val
       if (Dep.target) {
+        // wsd: 这里会触发一次当前watch依赖收集的过程。watch的depIds会加入这个属性的depId以及这个属性对应的dep的subs会加入这个watch
         dep.depend()
         if (childOb) {
           childOb.dep.depend()
@@ -186,6 +188,7 @@ export function defineReactive (
       } else {
         val = newVal
       }
+      // wsd: 对新设置的值变成一个响应式对象
       childOb = !shallow && observe(newVal)
       dep.notify()
     }

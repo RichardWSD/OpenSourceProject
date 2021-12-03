@@ -32,6 +32,8 @@ Vue.prototype.$mount = function (
 
   const options = this.$options
   // resolve template/el and convert to render function
+  // wsd: 这个方法是在Vue.prototype._init中的vm.$mount进来的，而执行vm.$mount前有一个if (vm.$options.el)的判断
+  // 所以进来这里时候则一定会有el，所以在main.js中写new Vue如果没传el参数则不会有整个应用的挂载过程
   if (!options.render) {
     let template = options.template
     if (template) {

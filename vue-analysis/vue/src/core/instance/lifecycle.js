@@ -205,6 +205,8 @@ export function mountComponent (
   // mounted is called for render-created child components in its inserted hook
   // wsd: 判断为根节点的时候设置 vm._isMounted 为 true， 表示这个实例已经挂载了，同时执行 mounted 钩子函数
   // wsd: vm.$vnode为null表示是整个应用的根Vue实例，组件的mounted不在这里触发
+  // 这是因为调用栈是递归的，先执行mountComponent，然后再执行patch函数，patch最后执行了invokeInsertHook方法从而执行insert钩子函数，然后钩子函数
+  // 已经执行了callHook(vm, 'mounted')，然后归阶段回来的时候除了根节点外，其他组件的$vnode是有值的，所以可以用这个判断，这里只有根节点会进去执行
   if (vm.$vnode == null) {
     vm._isMounted = true
     callHook(vm, 'mounted')
