@@ -85,6 +85,7 @@ if (typeof Set !== 'undefined' && isNative(Set)) {
   }
 }
 
+// wsd: 这应该是flow的用法
 interface SimpleSet {
   has(key: string | number): boolean;
   add(key: string | number): mixed;

@@ -1,13 +1,9 @@
 <template>
   <div id="app">
-    <div v-if="flag">
+    <div ref="msg">
       {{ msg }}
     </div>
-    <div v-else>
-      {{ msg1 }}
-    </div>
     <button @click="change">change</button>
-    <button @click="toggle">toggle</button>
   </div>
 </template>
 
@@ -16,24 +12,21 @@ export default {
   name: 'App',
   data() {
     return {
-      flag: true,
       msg: 'Hello World',
-      msg1: 'Hello Vue'
     }
   },
   methods: {
     change() {
       this.msg = Math.random();
+      console.log('sync:', this.$refs.msg.innerText);
+      this.$nextTick(() => {
+       console.log('nextTick:', this.$refs.msg.innerText);
+      })
+      this.$nextTick().then(() => {
+        console.log('nextTick with promise', this.$refs.msg.innerText);
+      })
     },
-    toggle() {
-      this.flag = !this.flag;
-    }
   },
-  watch: {
-    msg() {
-      this.msg = Math.random()
-    }
-  }
 }
 </script>
 
