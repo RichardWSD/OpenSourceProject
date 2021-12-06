@@ -237,6 +237,7 @@ export function updateChildComponent (
   vm.$options._parentVnode = parentVnode
   vm.$vnode = parentVnode // update vm's placeholder node without re-render
 
+  // wsd: 组件vnode是没有parent和children的
   if (vm._vnode) { // update child tree's parent
     vm._vnode.parent = parentVnode
   }
@@ -256,6 +257,7 @@ export function updateChildComponent (
     for (let i = 0; i < propKeys.length; i++) {
       const key = propKeys[i]
       const propOptions: any = vm.$options.props // wtf flow?
+      // wsd: 在第一个更新的demo中为什么flag的改变会引起子组件的重新渲染，就是因为这里给子组件的props重新赋值，然后触发了setter，从而触发_update
       props[key] = validateProp(key, propOptions, propsData, vm)
     }
     toggleObserving(true)
