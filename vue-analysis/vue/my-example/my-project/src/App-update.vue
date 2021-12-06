@@ -12,27 +12,27 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
+  /* components: {
     HelloWorld
-  },
-  data() {
+  }, */
+  data () {
     return {
       items: [
-        {id: 0, val: 'A'},
-        {id: 1, val: 'B'},
-        {id: 2, val: 'C'},
-        {id: 3, val: 'D'}
+        { id: 0, val: 'A' },
+        { id: 1, val: 'B' },
+        { id: 2, val: 'C' },
+        { id: 3, val: 'D' }
       ]
       // flag: false
     }
   },
   methods: {
-    change() {
-      this.items.reverse().push({id: 4, val: 'E'})
+    change () {
+      this.items.reverse().push({ id: 4, val: 'E' })
     }
     // toggle() {
     //   this.flag = !this.flag;

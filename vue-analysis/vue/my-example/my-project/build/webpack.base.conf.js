@@ -8,8 +8,6 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
-
-
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
@@ -25,8 +23,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js', // 当用脚手架创建项目时选择runtime+complier(默认)，则import Vue from 'vue'的时候用的vue文件就是这个，否则（选择仅runtime）则选择vue.runtime.esm.js
-      '@': resolve('src'),           // 所以在node_module中vue包的vue.esm.js文件直接打断点则可以直接调试
+      vue$: 'vue/dist/vue.esm-beta.js', // 当用脚手架创建项目时选择runtime+complier(默认)，则import Vue from 'vue'的时候用的vue文件就是这个，否则（选择仅runtime）则选择vue.runtime.esm.js
+      '@': resolve('src') // 所以在node_module中vue包的vue.esm.js文件直接打断点则可以直接调试
     }
   },
   module: {

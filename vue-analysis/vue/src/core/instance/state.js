@@ -199,6 +199,7 @@ function initComputed (vm: Component, computed: Object) {
     // component prototype. We only need to define computed properties defined
     // at instantiation here.
     // wsd: computed的键值不能和其他属性冲突
+    // wsd: 组件定义的computed初始化在另外一个地方
     if (!(key in vm)) {
       defineComputed(vm, key, userDef)
     } else if (process.env.NODE_ENV !== 'production') {
