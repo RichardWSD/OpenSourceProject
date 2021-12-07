@@ -277,6 +277,7 @@ function normalizeProps (options: Object, vm: ?Component) {
   if (!props) return
   const res = {}
   let i, val, name
+  // wsd: 数组方式定义的props必须是string
   if (Array.isArray(props)) {
     i = props.length
     while (i--) {

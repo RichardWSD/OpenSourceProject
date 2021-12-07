@@ -68,9 +68,12 @@ function initProps (vm: Component, propsOptions: Object) {
   // cache prop keys so that future props updates can iterate using Array
   // instead of dynamic object key enumeration.
   const keys = vm.$options._propKeys = []
+  // wsd: 只有大Vue的initProps进来是true
   const isRoot = !vm.$parent
   // root instance props should be converted
   if (!isRoot) {
+    // wsd: 对于对象的 prop 值，子组件的 prop 值始终指向父组件的 prop 值，只要父组件的 prop 值变化，就会触发子组件的重新渲染，
+    // 所以无须递归去observe
     toggleObserving(false)
   }
   for (const key in propsOptions) {

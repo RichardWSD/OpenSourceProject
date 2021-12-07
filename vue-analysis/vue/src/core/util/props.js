@@ -30,6 +30,7 @@ export function validateProp (
   // boolean casting
   const booleanIndex = getTypeIndex(Boolean, prop.type)
   if (booleanIndex > -1) {
+    // wsd: 这里是没显示给prop赋值而且属性也没有定义默认值则value=false
     if (absent && !hasOwn(prop, 'default')) {
       value = false
     } else if (value === '' || value === hyphenate(key)) {
@@ -81,6 +82,10 @@ function getPropDefaultValue (vm: ?Component, prop: PropOptions, key: string): a
   }
   // the raw prop value was also undefined from previous render,
   // return previous default value to avoid unnecessary watcher trigger
+  // 这里是一种优化手段
+  // wsd: 当第一次和第二次都没传入值时，说明两次都是用的默认值，第一次已经对这个默认值添加监听了
+  // 所以第二次直接将第一次被监听的对象赋值给 value
+  // 这样执行到后面的 observe 时，会因为有 __ob__ 属性，不会再次执行后面添加响应的逻辑
   if (vm && vm.$options.propsData &&
     vm.$options.propsData[key] === undefined &&
     vm._props[key] !== undefined
@@ -89,6 +94,7 @@ function getPropDefaultValue (vm: ?Component, prop: PropOptions, key: string): a
   }
   // call factory function for non-Function types
   // a value is Function if its prototype is function even across different execution context
+  // wsd: 对象或数组默认值从一个工厂函数获取
   return typeof def === 'function' && getType(prop.type) !== 'Function'
     ? def.call(vm)
     : def
@@ -121,6 +127,7 @@ function assertProp (
     if (!Array.isArray(type)) {
       type = [type]
     }
+    // wsd: 这里一旦匹配到一个符合条件的就退出循环了，并且valid为true
     for (let i = 0; i < type.length && !valid; i++) {
       const assertedType = assertType(value, type[i])
       expectedTypes.push(assertedType.expectedType || '')
