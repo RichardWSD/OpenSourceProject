@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Tutorials</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+<!-- 
+  https://www.w3.org/TR/html5/syntax.html#element-restrictions
+  A single newline may be placed immediately after the start tag of pre and textarea elements. 
+  If the element's contents are intended to start with a newline, two consecutive newlines thus need to be included by the author. 
+-->
+  <pre>footer</pre>
+  <pre>
+footer</pre>
+</body>
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    template: 
+    `
+      <div>
+        <pre style="background-color:#aaa;">内容</pre>
+      <pre>
+内容</pre>
+      </div>
+    `,
+  })
+</script>
+
+</html>

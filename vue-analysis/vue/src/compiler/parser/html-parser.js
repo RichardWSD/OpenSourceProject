@@ -46,7 +46,7 @@ const decodingMap = {
 const encodedAttr = /&(?:lt|gt|quot|amp);/g
 const encodedAttrWithNewLines = /&(?:lt|gt|quot|amp|#10|#9);/g
 
-// #5992
+// #5992 https://github.com/vuejs/vue/issues/5992
 const isIgnoreNewlineTag = makeMap('pre,textarea', true)
 const shouldIgnoreFirstNewline = (tag, html) => tag && isIgnoreNewlineTag(tag) && html[0] === '\n'
 
@@ -108,8 +108,10 @@ export function parseHTML (html, options) {
         }
 
         // Start tag:
+        // wsd: 解析出开始标签上的属性并前进
         const startTagMatch = parseStartTag()
         if (startTagMatch) {
+          // wsd: 对一些标签的特殊性做处理并且调用option的start方法对标签上的属性做解析，如v-if, v-for等，并且组建树结构
           handleStartTag(startTagMatch)
           if (shouldIgnoreFirstNewline(lastTag, html)) {
             advance(1)
@@ -142,6 +144,7 @@ export function parseHTML (html, options) {
         html = ''
       }
 
+      // wsd: 对文本进行处理，比如对 Mustache 表达式进行处理以及根元素不能是纯文本判断
       if (options.chars && text) {
         options.chars(text)
       }

@@ -7,14 +7,14 @@ Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  template: 
+  template:
   `<ul :class="bindCls" class="list" v-if="isShow">
     <li v-for="(item,index) in data" @click="clickItem(index)">
       {{item}}:<{{index}}
     </li>
    </ul>
   `,
-  data() {
+  data () {
     return {
       bindCls: 'a',
       isShow: true,
@@ -22,8 +22,8 @@ new Vue({
     }
   },
   methods: {
-    clickItem(index) {
-      console.log(index);
+    clickItem (index) {
+      console.log(index)
     }
   }
 })

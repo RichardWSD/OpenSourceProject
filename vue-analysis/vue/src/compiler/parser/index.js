@@ -329,7 +329,7 @@ export function processElement (element: ASTElement, options: CompilerOptions) {
   for (let i = 0; i < transforms.length; i++) {
     element = transforms[i](element, options) || element
   }
-  // wsd: 处理事件
+  // wsd: 处理v-bind v-on 指令等
   processAttrs(element)
 }
 
@@ -611,6 +611,7 @@ function checkInFor (el: ASTElement): boolean {
   return false
 }
 
+// wsd: 解析修饰符 eg: @click.prevent
 function parseModifiers (name: string): Object | void {
   const match = name.match(modifierRE)
   if (match) {
