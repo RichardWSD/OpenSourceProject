@@ -50,6 +50,7 @@ export function generate (
   }
 }
 
+// wsd: 递归调用genElement完成code的生成
 export function genElement (el: ASTElement, state: CodegenState): string {
   if (el.staticRoot && !el.staticProcessed) {
     return genStatic(el, state)
@@ -66,6 +67,7 @@ export function genElement (el: ASTElement, state: CodegenState): string {
   } else {
     // component or element
     let code
+    // wsd: 这里是处理<component :is="xxx"></component>的的情况的
     if (el.component) {
       code = genComponent(el.component, el, state)
     } else {
@@ -147,6 +149,7 @@ function genIfConditions (
   const condition = conditions.shift()
   if (condition.exp) {
     return `(${condition.exp})?${
+      // wsd: Ternary 三元
       genTernaryExp(condition.block)
     }:${
       genIfConditions(conditions, state, altGen, altEmpty)

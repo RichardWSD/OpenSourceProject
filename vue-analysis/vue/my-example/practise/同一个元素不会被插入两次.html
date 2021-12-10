@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="parent"></div>
+  <button onclick="add()">点击我加入同个dom元素</button>
+  <script>
+    const parent = document.querySelector('#parent')
+    const ele = document.createElement('div')
+    ele.innerHTML = '零食代理发来的'
+    parent.appendChild(ele)
+    parent.appendChild(ele)
+    function add() {
+      parent.appendChild(ele)
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Tutorials</title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+</body>
+
+<script>
+  // obejct定义在外面会触发这个报错
+  // Property or method "object" is not defined on the instance but referenced during render. 
+  // Make sure that this property is reactive, either in the data option, or for class-based components, by initializing the property
+  /* const object = {
+    key1: 'val1',
+    key2: 'val2',
+    key3: 'val3'
+  } */
+  let vm = new Vue({
+    el: '#app',
+    template: '<div>' +
+      '<template v-for="(it, idx) in object"><div>{{it}}:{{idx}}</div></template>' +
+      '</div>',
+    data() {
+      return {
+        object: {
+          key1: 'val1',
+          key2: 'val2',
+          key3: 'val3'
+        }
+      }
+    },
+    methods: {
+      
+    }
+  })
+</script>
+
+</html>

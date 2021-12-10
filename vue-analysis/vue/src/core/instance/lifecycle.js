@@ -272,9 +272,10 @@ export function updateChildComponent (
   updateComponentListeners(vm, listeners, oldListeners)
 
   // resolve slots + force update if has children
-  // wsd: 修改父组件的值插槽内容也能更新
+  // wsd: 修改父组件的值插槽内容也能更新，这里对keep-alive包裹的内容进行的更新，比如原来包裹的A组件，现在重新解析出来的是B组件
   if (hasChildren) {
     vm.$slots = resolveSlots(renderChildren, parentVnode.context)
+    // wsd: 重新执行 <keep-alive> 的 render 方法，这个时候如果它包裹的第一个组件 vnode 命中缓存，则直接返回缓存中的 vnode.componentInstance
     vm.$forceUpdate()
   }
 

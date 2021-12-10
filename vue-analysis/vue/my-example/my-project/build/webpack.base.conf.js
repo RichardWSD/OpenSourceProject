@@ -11,7 +11,7 @@ function resolve (dir) {
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
-    app: './src/main-complier.js'
+    app: './src/main-keepAlive.js'
   },
   output: {
     path: config.build.assetsRoot,

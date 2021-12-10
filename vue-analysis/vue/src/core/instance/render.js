@@ -66,6 +66,7 @@ export function renderMixin (Vue: Class<Component>) {
 
     // reset _rendered flag on slots for duplicate slot check
     if (process.env.NODE_ENV !== 'production') {
+      // wsd: <keep-alive><component :is="currentComp"></keep-alive>这种也是会有slots的
       for (const key in vm.$slots) {
         // $flow-disable-line
         vm.$slots[key]._rendered = false

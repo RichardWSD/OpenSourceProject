@@ -110,7 +110,7 @@ function isStatic (node: ASTNode): boolean {
     !node.if && !node.for && // not v-if or v-for or v-else
     !isBuiltInTag(node.tag) && // not a built-in
     isPlatformReservedTag(node.tag) && // not a component
-    !isDirectChildOfTemplateFor(node) &&
+    !isDirectChildOfTemplateFor(node) && // wsd: 非带有 v-for 的 template 标签的直接子节点
     Object.keys(node).every(isStaticKey)
   ))
 }

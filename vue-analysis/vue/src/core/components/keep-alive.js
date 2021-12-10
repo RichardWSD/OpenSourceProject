@@ -21,6 +21,7 @@ function matches (pattern: string | RegExp | Array<string>, name: string): boole
   return false
 }
 
+// wsd: prune 修剪
 function pruneCache (keepAliveInstance: any, filter: Function) {
   const { cache, keys, _vnode } = keepAliveInstance
   for (const key in cache) {

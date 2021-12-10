@@ -14,6 +14,16 @@ new Vue({
     </li>
    </ul>
   `,
+  // optimize专用
+  /* template:
+  `<div>
+    <ul :class="bindCls" class="list" v-if="isShow">
+      <li v-for="(item,index) in data" @click="clickItem(index)">
+        {{item}}:<{{index}}
+      </li>
+    </ul><div><p>div下的p的纯文本</p></div><p>纯文本</p>
+  </div>
+  `, */
   data () {
     return {
       bindCls: 'a',
