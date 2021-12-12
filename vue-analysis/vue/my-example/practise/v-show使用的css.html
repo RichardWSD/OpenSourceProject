@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>VueJS Tutorials</title>
+  <script src="https://unpkg.com/vue"></script>
+  <style>
+    .fade-enter-active, .fade-leave-active {
+  transition: opacity 2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    
+  </div>
+</body>
+
+<script>
+  let vm = new Vue({
+    el: '#app',
+    template: `<div>
+      <button v-on:click="handle">
+        Toggle
+      </button>
+      <transition name="fade">
+        <p id="p" v-show="show">hello</p>
+      </transition>
+      </div>`,
+    data: {
+      show: true
+    },
+    methods: {
+      handle() {
+        this.show = !this.show
+        const p = document.querySelector('#p')
+        console.log(p.style);
+      }
+    }
+  })
+</script>
+
+</html>
