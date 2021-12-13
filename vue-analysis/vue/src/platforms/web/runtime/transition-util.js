@@ -123,6 +123,7 @@ export function getTransitionInfo (el: Element, expectedType?: ?string): {
 } {
   const styles: any = window.getComputedStyle(el)
   const transitionDelays: Array<string> = styles[transitionProp + 'Delay'].split(', ')
+  // wsd: 是个数组比如这种情况，transition:width 2s, height 2s
   const transitionDurations: Array<string> = styles[transitionProp + 'Duration'].split(', ')
   const transitionTimeout: number = getTimeout(transitionDelays, transitionDurations)
   const animationDelays: Array<string> = styles[animationProp + 'Delay'].split(', ')

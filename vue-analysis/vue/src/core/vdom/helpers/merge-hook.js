@@ -4,6 +4,7 @@ import VNode from '../vnode'
 import { createFnInvoker } from './update-listeners'
 import { remove, isDef, isUndef, isTrue } from 'shared/util'
 
+// wsd: 把多个要执行的函数放到fns中，然后对外暴露的比如insert还是一个函数，但是执行的时候会去遍历fns来执行
 export function mergeVNodeHook (def: Object, hookKey: string, hook: Function) {
   if (def instanceof VNode) {
     // wsd:　对于组件data有hook，普通节点data没有hook

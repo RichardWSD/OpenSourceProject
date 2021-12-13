@@ -28,7 +28,7 @@ export function enter (vnode: VNodeWithData, toggleDisplay: ?() => void) {
     el._leaveCb.cancelled = true
     el._leaveCb()
   }
-
+ // wsd: 解析transition的css类名
   const data = resolveTransition(vnode.data.transition)
   if (isUndef(data)) {
     return
@@ -156,6 +156,7 @@ export function enter (vnode: VNodeWithData, toggleDisplay: ?() => void) {
           if (isValidDuration(explicitEnterDuration)) {
             setTimeout(cb, explicitEnterDuration)
           } else {
+            // wsd：清理监听以及执行cb回调
             whenTransitionEnds(el, type, cb)
           }
         }

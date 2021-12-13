@@ -30,7 +30,7 @@ import {
 
 export const emptyNode = new VNode('', {}, [])
 
-// wsd: 这个是patch过程中对platformModules和baseModules中的一些诸如ref, directive, class, attrs等东东做一些操作的
+// wsd: 这个是patch过程中对platformModules和baseModules中的一些诸如ref, directive, class, attrs, transition等东东做一些操作的
 // 和componentVNodeHooks中的init, prepatch, insert, destroy做的操作不同
 // 还有组件中的hook是通过callHook来触发的
 // 所以暂时看起来有三种hook, 但是大家做不一样的工作
