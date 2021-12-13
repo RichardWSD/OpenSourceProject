@@ -34,6 +34,11 @@ export default {
   props,
 
   beforeMount () {
+    /* 
+    由于虚拟 DOM 的子元素更新算法是不稳定的，它不能保证被移除元素的相对位置，所以我们强制 <transition-group> 组件更新子节点通过 2 个步骤：
+      第一步我们移除需要移除的 vnode，同时触发它们的 leaving 过渡；
+      第二步我们需要把插入和移动的节点达到它们的最终态，同时还要保证移除的节点保留在应该的位置 
+    */
     const update = this._update
     this._update = (vnode, hydrating) => {
       // force removing pass
