@@ -77,6 +77,7 @@ function updateDOMListeners (oldVnode: VNodeWithData, vnode: VNodeWithData) {
   }
   const on = vnode.data.on || {}
   const oldOn = oldVnode.data.on || {}
+  // wsd: 原生事件是给组件的根元素绑定的
   target = vnode.elm
   // wsd: 这个处理v-model
   normalizeEvents(on)

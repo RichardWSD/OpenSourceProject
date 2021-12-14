@@ -103,6 +103,7 @@ function genHandler (
     if (__WEEX__ && handler.params) {
       return genWeexHandler(handler.params, handler.value)
     }
+     // wsd: 这里就是为什么一定要用$event获取值得原因
     return `function($event){${handler.value}}` // inline statement
   } else {
     let code = ''

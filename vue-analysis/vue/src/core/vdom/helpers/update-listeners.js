@@ -3,6 +3,7 @@
 import { warn } from 'core/util/index'
 import { cached, isUndef, isPlainObject } from 'shared/util'
 
+// wsd: 模板中事件修饰符简写 https://cn.vuejs.org/v2/guide/render-function.html
 const normalizeEvent = cached((name: string): {
   name: string,
   once: boolean,

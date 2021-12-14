@@ -5,18 +5,14 @@ let Child = {
   // '<label>' +
   `
   <input
-    :value="value"
+    :value="msg"
     v-on:input="$emit('input', $event.target.value)"
   >
 ` 
 // + 
 //   '</label>'
   ,
-  data() {
-    return {
-      value: ''
-    }
-  },
+  props: ['msg'],
   methods: {
     clickHandler(e) {
       console.log('Button clicked!', e)
@@ -28,14 +24,15 @@ let Child = {
 let vm = new Vue({
   el: '#app',
   template: '<div>' +
-  '<child @input="inputHandler" @click.native.prevent="clickHandler" @focus.native="focusHandler"></child>' +
+  '<child :msg="message" @input="inputHandler" @click.native.prevent="clickHandler" @focus.native="focusHandler"></child>' +
   '</div>',
   methods: {
     clickHandler() {
       console.log('Child clicked!')
     },
-    inputHandler() {
+    inputHandler(msg) {
       console.log('Child input!')
+      this.message = msg
     },
     focusHandler() {
       console.log('Child focus');
@@ -43,5 +40,10 @@ let vm = new Vue({
   },
   components: {
     Child
+  },
+  data() {
+    return {
+      message: ''
+    }
   }
 })
