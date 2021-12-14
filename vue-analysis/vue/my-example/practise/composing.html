@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="inputValue">
+  <span id="showValue"></span>
+  <script>
+    let input = document.getElementById('inputValue');
+    let show = document.getElementById('showValue');
+    input.value = 123;
+    show.innerText = input.value
+
+    function onCompositionStart(e) {
+      console.log('onCompositionStart');
+      e.target.composing = true;
+    }
+
+    function onCompositionEnd(e) {
+      console.log('onCompositionEnd');
+      if (!e.target.composing) {
+        return
+      }
+      e.target.composing = false;
+      show.innerText = e.target.value
+    }
+    function onInputChange(e) {
+      console.log('onInputChange');
+      // e.target.composing表示是否还在输入中
+      if(e.target.composing)return;
+      show.innerText = e.target.value
+    }
+    input.addEventListener('input', onInputChange)
+    input.addEventListener('compositionstart', onCompositionStart)// 组合输入开始
+    input.addEventListener('compositionend', onCompositionEnd) // 组合输入结束
+</script>
+</body>
+</html>

@@ -27,6 +27,7 @@ export function resolveSlots (
     ) {
       const name = data.slot
       const slot = (slots[name] || (slots[name] = []))
+      // wsd: 这是一个数组，意味着多个标签可以写同一个slot属性，eg: <p slot="footer">{{desc}}</p><p slot="footer">{{desc}}</p>
       if (child.tag === 'template') {
         slot.push.apply(slot, child.children || [])
       } else {

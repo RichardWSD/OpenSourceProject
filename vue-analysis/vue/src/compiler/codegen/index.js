@@ -67,7 +67,7 @@ export function genElement (el: ASTElement, state: CodegenState): string {
   } else {
     // component or element
     let code
-    // wsd: 这里是处理<component :is="xxx"></component>的的情况的
+    // wsd: 这里是处理<component :is="xxx"></component>的的情况的, function processComponent可得知
     if (el.component) {
       code = genComponent(el.component, el, state)
     } else {

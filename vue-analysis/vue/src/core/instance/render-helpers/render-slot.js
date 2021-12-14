@@ -16,6 +16,7 @@ export function renderSlot (
   let nodes
   // wsd: 把父组件slot-scopes部分的vnode create过程放到子组件的创建过程中，这里包装成了一个函数
   // 所以slot-scopes才可以访问子组件中的数据
+  // 作用域插槽走if的逻辑，静态的slot才走else的逻辑
   if (scopedSlotFn) { // scoped slot
     props = props || {}
     if (bindObject) {

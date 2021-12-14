@@ -21,6 +21,7 @@ let vm = new Vue({
   '<component :is="currentComp">' +
   '</component>' +
   '</keep-alive>' +
+  '<B />' +
   '<button @click="change">switch</button>' +
   '</div>',
   data: {
