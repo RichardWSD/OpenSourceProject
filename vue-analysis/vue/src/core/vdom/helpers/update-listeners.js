@@ -43,6 +43,7 @@ export function createFnInvoker (fns: Function | Array<Function>): Function {
   return invoker
 }
 
+// wsd: DOM原生和组件的add, remove方法传入，实现不同的绑定
 export function updateListeners (
   on: Object,
   oldOn: Object,

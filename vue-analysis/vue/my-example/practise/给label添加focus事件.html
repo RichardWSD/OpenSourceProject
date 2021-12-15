@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <label id="lab">测试focus是否生效</label>
+  <script>
+    const elm = document.querySelector('#lab')
+    elm.addEventListener('focus', focus)
+    elm.addEventListener('click', click)
+
+    function focus() {
+      console.log('focus');
+    }
+    function click() {
+      console.log('click');
+    }
+  </script>
+</body>
+</html>

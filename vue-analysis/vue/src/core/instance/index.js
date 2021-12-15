@@ -17,6 +17,7 @@ function Vue (options) {
 // wsd: 这些都是挂载一些方法到Vue原型上
 initMixin(Vue)
 stateMixin(Vue)
+// wsd：组件事件系统实现
 eventsMixin(Vue)
 lifecycleMixin(Vue)
 renderMixin(Vue)

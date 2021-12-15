@@ -1,47 +1,46 @@
 import Vue from 'vue'
 
-let Child = {
-  template: 
-  // '<label>' +
+const Child = {
+  template:
+  '<label>' +
   `
   <input
     :value="msg"
     v-on:input="$emit('input', $event.target.value)"
   >
-` 
-// + 
-//   '</label>'
-  ,
+` +
+   '</label>',
+
   props: ['msg'],
   methods: {
-    clickHandler(e) {
+    clickHandler (e) {
       console.log('Button clicked!', e)
       this.$emit('select')
     }
   }
 }
 
-let vm = new Vue({
+const vm = new Vue({
   el: '#app',
   template: '<div>' +
   '<child :msg="message" @input="inputHandler" @click.native.prevent="clickHandler" @focus.native="focusHandler"></child>' +
   '</div>',
   methods: {
-    clickHandler() {
+    clickHandler () {
       console.log('Child clicked!')
     },
-    inputHandler(msg) {
+    inputHandler (msg) {
       console.log('Child input!')
       this.message = msg
     },
-    focusHandler() {
-      console.log('Child focus');
+    focusHandler () {
+      console.log('Child focus')
     }
   },
   components: {
     Child
   },
-  data() {
+  data () {
     return {
       message: ''
     }
