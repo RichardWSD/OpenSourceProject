@@ -166,6 +166,8 @@ export function createComponent (
 
   // functional component
   if (isTrue(Ctor.options.functional)) {
+    // wsd: 虽然是组件，但是函数式组件和普通的组件不同，函数式组件在这里就直接执行render函数返回vnode了，所以它的上下文是父组件上下文
+    // 而普通的组件是在patch阶段通过init钩子才执行的组件创建过程，child.$moun，所以上下文是组件自己的实例
     return createFunctionalComponent(Ctor, propsData, data, context, children)
   }
 
