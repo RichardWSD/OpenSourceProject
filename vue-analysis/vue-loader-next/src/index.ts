@@ -73,8 +73,8 @@ export default function loader(
     mode,
     target,
     sourceMap,
-    rootContext,
-    resourcePath,
+    rootContext, // wsd: D:\\Code\\OpenSourceProject\\vue-analysis\\vue-loader-next
+    resourcePath, // wsd: D:\\Code\\OpenSourceProject\\vue-analysis\\vue-loader-next\\example\\App.vue
     resourceQuery = '',
   } = loaderContext
 
@@ -110,9 +110,11 @@ export default function loader(
   }
 
   // module id for scoped CSS & hot-reload
+  // wsd: example\\App.vue
   const rawShortFilePath = path
     .relative(rootContext || process.cwd(), filename)
     .replace(/^(\.\.[\/\\])+/, '')
+  // wsd: example/App.vue
   const shortFilePath = rawShortFilePath.replace(/\\/g, '/')
   const id = hash(
     isProduction
@@ -154,7 +156,7 @@ export default function loader(
     const lang = script?.lang || scriptSetup?.lang
     isTS = !!(lang && /tsx?/.test(lang))
     const src = (script && !scriptSetup && script.src) || resourcePath
-    const attrsQuery = attrsToQuery((scriptSetup || script)!.attrs, 'js')
+    const attrsQuery = attrsToQuery((scriptSetup || script)!.attrs, 'js') // wsd:　&lang=js
     const query = `?vue&type=script${attrsQuery}${resourceQuery}`
     const scriptRequest = stringifyRequest(src + query)
     scriptImport =
