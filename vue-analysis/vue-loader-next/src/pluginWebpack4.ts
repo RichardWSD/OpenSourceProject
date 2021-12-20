@@ -7,6 +7,12 @@ const RuleSet = require('webpack/lib/RuleSet')
 const id = 'vue-loader-plugin'
 const NS = 'vue-loader'
 
+/* 
+  ident: 'ref--0', loader: 'vue-loader'
+  ident: 'ref--1-0', loader: 'url-loader'
+  ident: 'ref--2-0', loader: 'D:\\Code\\OpenSourceProject\\vue-analysis\\vue-lo…dules\\mini-css-extract-plugin\\dist\\loader.js'
+  ident: 'ref--3-0', loader: 'ts-loader'
+*/
 class VueLoaderPlugin implements webpack.Plugin {
   static NS = NS
 
