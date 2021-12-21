@@ -3,7 +3,7 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
     mode: 'development', // 不压缩代码,加快编译速度
-    devtool: 'source-map', // 提供源码映射文件调试使用
+    devtool: 'eval-cheap-module-source-map', // 提供源码映射文件调试使用
     module: {
         rules: [
             {
