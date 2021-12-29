@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .test > p {
   background-color: aqua;
 }
