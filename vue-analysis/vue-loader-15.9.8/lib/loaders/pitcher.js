@@ -102,6 +102,7 @@ module.exports.pitch = function (remainingRequest) {
       }
     })
 
+    // wsd: -!表示禁用所有普通和前置loader，所以pitcher loader不会再被加入useLoader中被合并进loaders里 ( NormalModuleFactory )
     return loaderUtils.stringifyRequest(this, '-!' + [
       ...loaderStrings,
       this.resourcePath + this.resourceQuery
