@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css"
+/>
+
+  <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+  <script src="./vue2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    
+    new Vue({
+      el: '#app',
+      template: `<van-tabs>
+        <van-tab title="标签 1">内容 1</van-tab>
+        
+      </van-tabs>`,
+      data() {
+      return {
+      };
+    },
+    });
+
+  </script>
+</body>
+</html>
