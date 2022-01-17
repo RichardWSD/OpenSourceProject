@@ -1,6 +1,6 @@
 <template>
   <demo-section>
-    <!-- <demo-block :title="t('basicUsage')">
+    <demo-block :title="t('basicUsage')">
       <van-tabs v-model="active">
         <van-tab :title="t('tab') + index" v-for="index in tabs" :key="index">
           {{ t('content') }} {{ index }}
@@ -14,7 +14,7 @@
         <van-tab name="b" :title="t('tab') + 2"> {{ t('content') }} 2 </van-tab>
         <van-tab name="c" :title="t('tab') + 3"> {{ t('content') }} 3 </van-tab>
       </van-tabs>
-    </demo-block> -->
+    </demo-block>
 
     <demo-block :title="t('title2')">
       <van-tabs>
@@ -24,7 +24,7 @@
       </van-tabs>
     </demo-block>
 
-    <!-- <demo-block :title="t('title3')">
+    <demo-block :title="t('title3')">
       <van-tabs @disabled="onClickDisabled">
         <van-tab
           v-for="index in 3"
@@ -100,7 +100,7 @@
           {{ t('content') }} {{ index }}
         </van-tab>
       </van-tabs>
-    </demo-block> -->
+    </demo-block>
   </demo-section>
 </template>
 

@@ -223,13 +223,13 @@ export default createComponent({
 
         const title = titles[this.currentIndex].$el;
         const { lineWidth, lineHeight } = this;
-         // wsd: title的offsetLeft是固定的，都是相对于父容器开头位置
+        // wsd: title的offsetLeft是固定的，都是相对于父容器开头位置
         const left = title.offsetLeft + title.offsetWidth / 2;
 
         const lineStyle = {
           width: addUnit(lineWidth),
           backgroundColor: this.color,
-           // wsd: 相当于是设置了两次偏移而不是覆盖
+          // wsd: 相当于是设置了两次偏移而不是覆盖
           transform: `translateX(${left}px) translateX(-50%)`,
         };
 
@@ -318,8 +318,9 @@ export default createComponent({
 
       const { nav } = this.$refs;
       const title = titles[this.currentIndex].$el;
+      // 由 title.offsetLeft - x + 0.5*title.offsetWidth = 0.5*nav.offsetWidth
+      // 得到 x = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2
       const to = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2;
-      console.log('to:',to);
       scrollLeftTo(nav, to, immediate ? 0 : +this.duration);
     },
 
