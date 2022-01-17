@@ -8,7 +8,7 @@
       </van-tabs>
     </demo-block>
 
-    <demo-block :title="t('matchByName')">
+    <!-- demo-block :title="t('matchByName')">
       <van-tabs v-model="activeName">
         <van-tab name="a" :title="t('tab') + 1"> {{ t('content') }} 1 </van-tab>
         <van-tab name="b" :title="t('tab') + 2"> {{ t('content') }} 2 </van-tab>

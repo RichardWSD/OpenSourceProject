@@ -377,7 +377,7 @@ export default createComponent({
 
   render() {
     const { type, animated, scrollable } = this;
-
+    debugger
     const Nav = this.children.map((item, index) => (
       <Title
         ref="titles"
