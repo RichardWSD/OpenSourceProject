@@ -27,6 +27,7 @@ if (isWeapp) {
 // helper for demo locales
 Vue.mixin({
   computed: {
+    // wsd: 函数 t
     t() {
       const { name } = this.$options;
       const { lang = 'zh-CN' } = (this.$route && this.$route.meta) || {};

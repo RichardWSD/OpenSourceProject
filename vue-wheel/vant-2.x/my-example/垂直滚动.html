@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      margin: 200px auto;
+      height: 40px;
+      width: 100px;
+      border: 2px solid;
+      overflow: hidden;
+    }
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      transform: translateY(-120px);
+    }
+    .item {
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+    }
+    .item:first-child {
+      transform: translateY(120px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+    </div>
+  </div>
+</body>
+</html>

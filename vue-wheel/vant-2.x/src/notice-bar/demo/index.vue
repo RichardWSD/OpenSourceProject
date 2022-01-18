@@ -35,7 +35,7 @@
           :autoplay="3000"
           :show-indicators="false"
         >
-          <van-swipe-item>{{ t('content') }} 1</van-swipe-item>
+          <van-swipe-item>{{ (function(){debugger;t('content')})() }} 1</van-swipe-item>
           <van-swipe-item>{{ t('content') }} 2</van-swipe-item>
           <van-swipe-item>{{ t('content') }} 3</van-swipe-item>
         </van-swipe>

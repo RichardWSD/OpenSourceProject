@@ -46,6 +46,11 @@ export function stopPropagation(event: Event) {
 
 export function preventDefault(event: Event, isStopPropagation?: boolean) {
   /* istanbul ignore else */
+  // wsd: https://developer.mozilla.org/zh-CN/docs/Web/API/Event/cancelable
+  /* 
+    Event 实例的只读属性 cancelable 表明该事件是否可以被取消，当事件被阻止之后，该事件就好像没有被触发一样。如果事件不能被取消，则其 cancelable 属性的值为 false，且事件发生时无法在事件监听回调中停止事件。
+    在许多事件的监听回调中调用preventDefault()前，都需要检查 cancelable 属性的值
+  */
   if (typeof event.cancelable !== 'boolean' || event.cancelable) {
     event.preventDefault();
   }

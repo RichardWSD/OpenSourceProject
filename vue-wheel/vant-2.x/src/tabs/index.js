@@ -377,7 +377,6 @@ export default createComponent({
 
   render() {
     const { type, animated, scrollable } = this;
-    debugger
     const Nav = this.children.map((item, index) => (
       <Title
         ref="titles"
@@ -426,7 +425,8 @@ export default createComponent({
         </div>
       </div>
     );
-
+    // 这里有个骚操作：Content组件的name也是VanTabs，因为name跟tabs组件一样（为了class类名），所以在vuetools那里看到有两个VanTabs，第二个其实是Content组件
+    // 同理在Title组件也是这么操作的
     return (
       <div class={bem([type])}>
         {this.sticky ? (
