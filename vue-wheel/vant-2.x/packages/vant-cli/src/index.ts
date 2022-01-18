@@ -81,3 +81,8 @@ command('commit-lint')
   .action(commitLint);
 
 parse();
+
+/* wsd:
+   - ../site/desktop是用PC端看到的文档网页代码
+   - ../site/mobile是手机看到的文档网页代码
+*/

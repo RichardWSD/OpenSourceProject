@@ -318,7 +318,7 @@ export default createComponent({
 
       const { nav } = this.$refs;
       const title = titles[this.currentIndex].$el;
-      // 由 title.offsetLeft - x + 0.5*title.offsetWidth = 0.5*nav.offsetWidth
+      // wsd: 由 title.offsetLeft - x + 0.5*title.offsetWidth = 0.5*nav.offsetWidth
       // 得到 x = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2
       const to = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2;
       scrollLeftTo(nav, to, immediate ? 0 : +this.duration);

@@ -1,3 +1,4 @@
+// wsd: 还能写个.这么叼
 import { isDef, isObject } from '.';
 import { ObjectIndex } from './types';
 
