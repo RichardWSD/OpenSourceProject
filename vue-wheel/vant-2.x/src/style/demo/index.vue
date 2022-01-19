@@ -6,7 +6,12 @@
     </demo-block>
 
     <demo-block card :title="t('hairline')">
-      <div class="van-hairline--top" />
+      <!-- 上边框 -->
+      <div class="van-hairline--top"></div>
+      <!-- 左边框 -->
+      <div class="van-hairline--left"></div>
+      <!-- 上下边框 -->
+      <div class="van-hairline--top-bottom"></div>
     </demo-block>
 
     <demo-block card :title="t('animation')">
@@ -93,6 +98,25 @@ export default {
 
     &::after {
       top: 5px;
+    }
+  }
+
+  .van-hairline--left {
+    height: 30px;
+    background-color: @white;
+
+    &::after {
+      left: 5px;
+    }
+  }
+
+  .van-hairline--top-bottom {
+    height: 30px;
+    background-color: @white;
+
+    &::after {
+      top: 0px;
+      bottom: 0px;
     }
   }
 
