@@ -27,7 +27,7 @@ export default createComponent({
       if (!gutter) {
         return;
       }
-
+      debugger
       const spaces = [];
       const groups = [[]];
 
@@ -56,7 +56,7 @@ export default createComponent({
           }
         });
       });
-
+      // console.log('==>', spaces, groups)
       return spaces;
     },
   },
@@ -70,7 +70,7 @@ export default createComponent({
   render() {
     const { align, justify } = this;
     const flex = this.type === 'flex';
-
+    
     return (
       <this.tag
         class={bem({

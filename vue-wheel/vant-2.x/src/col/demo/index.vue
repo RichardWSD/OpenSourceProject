@@ -1,6 +1,6 @@
 <template>
   <demo-section>
-    <demo-block :title="t('basicUsage')">
+    <!-- <demo-block :title="t('basicUsage')">
       <van-row>
         <van-col span="8">span: 8</van-col>
         <van-col span="8">span: 8</van-col>
@@ -19,17 +19,27 @@
           offset: 12, span: 12
         </van-col>
       </van-row>
-    </demo-block>
+    </demo-block> -->
 
     <demo-block :title="t('title2')">
       <van-row gutter="20">
         <van-col span="8">span: 8</van-col>
         <van-col span="8">span: 8</van-col>
         <van-col span="8">span: 8</van-col>
+        <van-col span="8">span: 8</van-col>
+        <van-col span="8">span: 8</van-col>
       </van-row>
     </demo-block>
 
-    <demo-block v-if="!isWeapp" :title="t('title3')">
+    <demo-block :title="t('title2')">
+      <van-row gutter="80">
+        <van-col span="8">span: 8</van-col>
+        <van-col span="8">span: 8</van-col>
+        <van-col span="8">span: 8</van-col>
+      </van-row>
+    </demo-block>
+
+  <!--   <demo-block v-if="!isWeapp" :title="t('title3')">
       <van-row type="flex">
         <van-col span="6">span: 6</van-col>
         <van-col span="6">span: 6</van-col>
@@ -59,7 +69,7 @@
         <van-col span="6">span: 6</van-col>
         <van-col span="6">span: 6</van-col>
       </van-row>
-    </demo-block>
+    </demo-block> -->
   </demo-section>
 </template>
 
