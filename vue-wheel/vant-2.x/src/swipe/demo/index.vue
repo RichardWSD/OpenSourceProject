@@ -1,6 +1,6 @@
 <template>
   <demo-section>
-    <!-- <demo-block :title="t('basicUsage')">
+    <demo-block :title="t('basicUsage')">
       <van-swipe :autoplay="3000" indicator-color="white">
         <van-swipe-item>1</van-swipe-item>
         <van-swipe-item>2</van-swipe-item>
@@ -15,7 +15,7 @@
           <img v-lazy="image" />
         </van-swipe-item>
       </van-swipe>
-    </demo-block> -->
+    </demo-block>
 
     <demo-block :title="t('title3')">
       <van-swipe indicator-color="white" @change="onChange1">
@@ -26,7 +26,7 @@
       </van-swipe>
     </demo-block>
 
-    <!-- <demo-block :title="t('title4')">
+    <demo-block :title="t('title4')">
       <van-swipe
         vertical
         :autoplay="3000"
@@ -61,7 +61,7 @@
           <div class="custom-indicator">{{ current + 1 }}/4</div>
         </template>
       </van-swipe>
-    </demo-block> -->
+    </demo-block>
   </demo-section>
 </template>
 

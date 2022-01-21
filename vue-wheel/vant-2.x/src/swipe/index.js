@@ -32,11 +32,11 @@ export default createComponent({
   props: {
     width: [Number, String],
     height: [Number, String],
-    autoplay: [Number, String],
+    autoplay: [Number, String], // wsd: 这个是开启自动轮播
     vertical: Boolean,
     lazyRender: Boolean,
     indicatorColor: String,
-    loop: {
+    loop: {     // wsd: 这个是到轮播到最后一页后是否回到第一页
       type: Boolean,
       default: true,
     },
@@ -66,7 +66,7 @@ export default createComponent({
     return {
       rect: null,
       offset: 0,
-      active: 0,
+      active: 0, // wsd: 想通过 active 来进行切换是不行的，因为不是按设想的[0, n-1]的方式来循环切换，所以文档也没有把这个属性开放出去，暂时不建议看swipe源码（而且百度别人说有bug）
       deltaX: 0,
       deltaY: 0,
       swiping: false,
@@ -83,7 +83,7 @@ export default createComponent({
     initialSwipe() {
       this.initialize();
     },
-
+    
     autoplay(autoplay) {
       if (autoplay > 0) {
         this.autoPlay();
@@ -413,6 +413,9 @@ export default createComponent({
     },
   },
 
+  /* 
+    暂时不推荐看swipe的源码，active 存在
+  */
   render() {
     return (
       <div class={bem()}>

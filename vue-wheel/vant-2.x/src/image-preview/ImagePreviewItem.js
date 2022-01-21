@@ -48,6 +48,7 @@ export default {
     vertical() {
       const { rootWidth, rootHeight } = this;
       const rootRatio = rootHeight / rootWidth;
+      console.log(rootRatio, this.imageRatio);
       return this.imageRatio > rootRatio;
     },
 
@@ -241,6 +242,7 @@ export default {
 
     onLoad(event) {
       const { naturalWidth, naturalHeight } = event.target;
+      console.log(event.target);
       this.imageRatio = naturalHeight / naturalWidth;
     },
   },
