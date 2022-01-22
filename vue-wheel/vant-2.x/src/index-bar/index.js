@@ -34,6 +34,7 @@ export default createComponent({
     BindEventMixin(function (bind) {
       if (!this.scroller) {
         this.scroller = getScroller(this.$el);
+        console.log(this.scroller, this.$el);
       }
 
       bind(this.scroller, 'scroll', this.onScroll);

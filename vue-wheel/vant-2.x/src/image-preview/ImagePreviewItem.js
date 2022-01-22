@@ -48,7 +48,7 @@ export default {
     vertical() {
       const { rootWidth, rootHeight } = this;
       const rootRatio = rootHeight / rootWidth;
-      console.log(rootRatio, this.imageRatio);
+      console.log(this.imageRatio,rootRatio);
       return this.imageRatio > rootRatio;
     },
 
@@ -136,12 +136,13 @@ export default {
     onTouchStart(event) {
       const { touches } = event;
       const { offsetX = 0 } = this;
-
+      console.log('touches: ', touches[0]);
       this.touchStart(event);
       this.touchStartTime = new Date();
 
       this.startMoveX = this.moveX;
       this.startMoveY = this.moveY;
+      console.log('startMoveX,startMoveY: ', this.startMoveX, this.startMoveY);
 
       this.moving = touches.length === 1 && this.scale !== 1;
       this.zooming = touches.length === 2 && !offsetX;
@@ -242,7 +243,6 @@ export default {
 
     onLoad(event) {
       const { naturalWidth, naturalHeight } = event.target;
-      console.log(event.target);
       this.imageRatio = naturalHeight / naturalWidth;
     },
   },

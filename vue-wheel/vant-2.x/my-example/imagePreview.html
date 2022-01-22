@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12/lib/index.css" />
+  <style>
+    .van-swipe-item {
+      color: white;
+      font-size: 20px;
+      line-height: 150px;
+      text-align: center;
+    }
+
+    .van-swipe-item:nth-child(even) {
+      background-color: #39a9ed;
+    }
+
+    .van-swipe-item:nth-child(odd) {
+      background-color: #66c6f2;
+    }
+
+    .van-swipe img {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 240px;
+      padding: 30px 60px;
+      background-color: white;
+      pointer-events: none;
+    }
+  </style>
+  <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+  <script src="./vue2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vant@2.12/lib/vant.js"></script>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    // scrollspy
+    const template = `<div>
+      <van-cell is-link @click="showImagePreview">
+        预览
+      </van-cell>
+      </div>
+   `
+
+    const images = [
+      'https://img01.yzcdn.cn/vant/apple-1.jpg',
+      'https://img01.yzcdn.cn/vant/apple-2.jpg',
+      'https://img01.yzcdn.cn/vant/apple-3.jpg',
+      'https://img01.yzcdn.cn/vant/apple-4.jpg',
+    ];
+
+    new Vue({
+      el: '#app',
+      template,
+      methods: {
+        showImagePreview() {
+          const instance = vant.ImagePreview({
+            images
+          });
+
+          /* if (options.asyncClose) {
+            setTimeout(() => {
+              instance.close();
+            }, 2000);
+          } */
+        },
+      },
+    });
+
+  </script>
+</body>
+
+</html>

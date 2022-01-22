@@ -119,6 +119,7 @@ export default createComponent({
     resize() {
       if (this.$el && this.$el.getBoundingClientRect) {
         const rect = this.$el.getBoundingClientRect();
+        console.log(this.$el);
         this.rootWidth = rect.width;
         this.rootHeight = rect.height;
       }
