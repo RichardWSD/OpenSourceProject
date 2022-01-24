@@ -34,7 +34,6 @@ export default createComponent({
     BindEventMixin(function (bind) {
       if (!this.scroller) {
         this.scroller = getScroller(this.$el);
-        console.log(this.scroller, this.$el);
       }
 
       bind(this.scroller, 'scroll', this.onScroll);
@@ -153,7 +152,7 @@ export default createComponent({
       for (let i = this.children.length - 1; i >= 0; i--) {
         const prevHeight = i > 0 ? rects[i - 1].height : 0;
         const reachTop = this.sticky ? prevHeight + this.stickyOffsetTop : 0;
-
+        console.log(scrollTop, reachTop, rects[i].top);
         if (scrollTop + reachTop >= rects[i].top) {
           return i;
         }
@@ -207,6 +206,7 @@ export default createComponent({
     },
 
     onTouchEnd() {
+      console.log(this.active);
       this.active = null;
     },
   },

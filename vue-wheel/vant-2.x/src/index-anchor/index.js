@@ -47,6 +47,7 @@ export default createComponent({
 
   methods: {
     scrollIntoView() {
+      // wsd: https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView
       this.$el.scrollIntoView();
     },
 

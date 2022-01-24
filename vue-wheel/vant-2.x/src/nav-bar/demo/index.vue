@@ -18,6 +18,10 @@
         </template>
       </van-nav-bar>
     </demo-block>
+
+    <!-- <demo-block title="使用placeholder">
+      <van-nav-bar :title="t('title')" :left-text="t('back')" fixed placeholder left-arrow />
+    </demo-block> -->
   </demo-section>
 </template>
 
