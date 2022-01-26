@@ -73,7 +73,7 @@ function addRouteRecord (
 
   const record: RouteRecord = {
     path: normalizedPath,
-    regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),
+    regex: compileRouteRegex(normalizedPath, pathToRegexpOptions), // wsd: 利用了path-to-regexp 这个工具库
     components: route.components || { default: route.component },
     instances: {},
     name,

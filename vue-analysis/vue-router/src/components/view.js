@@ -16,6 +16,7 @@ export default {
     // so that components rendered by router-view can resolve named slots
     const h = parent.$createElement
     const name = props.name
+    // wsd: 在渲染函数访问了响应式的 _route 对象，所以该组件当 _route 变化的时候会导致组件重新渲染
     const route = parent.$route
     const cache = parent._routerViewCache || (parent._routerViewCache = {})
 

@@ -63,6 +63,7 @@ export class History {
 
   // wsd: 路径切换
   transitionTo (location: RawLocation, onComplete?: Function, onAbort?: Function) {
+    // wsd: 根据传入的 raw 和当前的路径 currentRoute 计算出一个新的路径并返回
     const route = this.router.match(location, this.current)
     // wsd: 真正去完成路由切换
     this.confirmTransition(route, () => {
