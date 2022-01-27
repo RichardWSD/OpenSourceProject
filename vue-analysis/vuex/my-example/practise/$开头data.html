@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    new Vue({
+    el: '#app',
+    template: `<div>
+      <button v-on:click="handle">
+        Toggle
+      </button>
+      <transition name="fade">
+        <p id="p" v-show="$data.$show">hello</p>
+      </transition>
+      </div>`,
+    data: {
+      // 会被watch只是不被代理到this上
+      $show: true
+    },
+    methods: {
+      handle() {
+        this.$data.$show = !this.$data.$show
+        const p = document.querySelector('#p')
+      }
+    }
+  })
+  </script>
+</body>
+</html>

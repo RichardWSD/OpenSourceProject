@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // Proxy不能代理到对象深层次的变化
+    const obj = {
+      b: {},
+      arr: []
+    }
+    const px = new Proxy(obj, {
+      set: function (obj, prop, value, receiver) {
+        console.log(1111);
+        obj[prop] = receiver;
+        return true;
+      },
+      get: function (target, propKey) {
+        if (propKey in target) {
+          return target[propKey];
+        } else {
+          throw new ReferenceError("Prop name \"" + propKey + "\" does not exist.");
+        }
+      }
+    })
+    px.a = 1
+    px.b.a = 2
+    px.arr.push(1)
+    px.arr = [2]
+  </script>
+</body>
+
+</html>
