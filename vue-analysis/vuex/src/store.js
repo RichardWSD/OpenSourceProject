@@ -54,10 +54,12 @@ export class Store {
     // init root module.
     // this also recursively registers all sub-modules
     // and collects all module getters inside this._wrappedGetters
+    // wsd: 安装模块
     installModule(this, state, [], this._modules.root)
 
     // initialize the store vm, which is responsible for the reactivity
     // (also registers _wrappedGetters as computed properties)
+    // wsd: resetStoreVM 的作用实际上是想建立 getters 和 state 的联系。利用了 Vue 中用 computed 计算属性来实现
     resetStoreVM(this, state)
 
     // apply plugins

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container {
+      width: 300px;
+      height: 600px;
+      border: 2px solid;
+      margin: 100px auto 20px;
+      overflow: scroll;
+    }
+    .placeholder {
+      border: 1px solid orange;
+      height: 700px;
+    }
+    .box {
+      border: 1px solid green;
+      background-color: indianred;
+      height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="placeholder"></div>
+    <div class="box">看我显示在哪里</div>
+    <div class="placeholder"></div>
+  </div>
+  <button onclick="scrollto()">滚动</button>
+  <script>
+    const element = document.querySelector('.box')
+    function scrollto() {
+      console.log(11);
+      // el.scrollIntoView(false)
+      // element.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+      element.scrollIntoView({behavior: "smooth", block: "center"});
+    }
+  </script>
+</body>
+</html>
