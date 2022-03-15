@@ -318,6 +318,7 @@ export default createComponent({
 
       const { nav } = this.$refs;
       const title = titles[this.currentIndex].$el;
+      // 获取到的nav的宽度和容器宽度一样，可能是flex布局的特性？？
       // wsd: 由 title.offsetLeft - x + 0.5*title.offsetWidth = 0.5*nav.offsetWidth
       // 得到 x = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2
       const to = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2;

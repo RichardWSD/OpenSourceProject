@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./vue.js"></script>
+</head>
+
+<body>
+  <!-- 无key -->
+      <!-- <li v-for="item in items">{{item}}</li> -->
+  <div id="app">
+    <ul>
+      <li v-for="item in items" :key="item">{{item}}</li>
+    </ul>
+    <div @click="onClick">新增 f</div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          items: ['a', 'b', 'c', 'd', 'e']
+        }
+      },
+      methods: {
+        onClick() {
+          this.items.splice(2, 0, 'f')
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
