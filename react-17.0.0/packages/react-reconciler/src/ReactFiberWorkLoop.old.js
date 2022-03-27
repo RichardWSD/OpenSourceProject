@@ -676,9 +676,11 @@ function ensureRootIsScheduled(root: FiberRoot, currentTime: number) {
 
   // Check if any lanes are being starved by other work. If so, mark them as
   // expired so we know to work on those next.
+  // wsd: 解决饥饿问题
   markStarvedLanesAsExpired(root, currentTime);
 
   // Determine the next lanes to work on, and their priority.
+  // wsd: 获取优先级最高的lane
   const nextLanes = getNextLanes(
     root,
     root === workInProgressRoot ? workInProgressRootRenderLanes : NoLanes,
@@ -697,14 +699,17 @@ function ensureRootIsScheduled(root: FiberRoot, currentTime: number) {
   }
 
   // Check if there's an existing task. We may be able to reuse it.
+  // wsd: 当前应用根节点已经有被调度的任务
   if (existingCallbackNode !== null) {
     const existingCallbackPriority = root.callbackPriority;
+    // wsd: 已经被调度的任务的优先级和本次被调度的优先级一样则直接返回
     if (existingCallbackPriority === newCallbackPriority) {
       // The priority hasn't changed. We can reuse the existing task. Exit.
       return;
     }
     // The priority changed. Cancel the existing callback. We'll schedule a new
     // one below.
+    // wsd: 否则取消正在被调度的任务
     cancelCallback(existingCallbackNode);
   }
 
@@ -830,6 +835,7 @@ function performConcurrentWorkOnRoot(root) {
   }
 
   ensureRootIsScheduled(root, now());
+  // wsd: 中断后能重新执行的原因。当前应用调度的回调函数和已存在的回调函数一致的话返回performConcurrentWorkOnRoot继续调度
   if (root.callbackNode === originalCallbackNode) {
     // The task node scheduled for this root is the same one that's
     // currently executed. Need to return a continuation.
@@ -1569,6 +1575,8 @@ function renderRootConcurrent(root: FiberRoot, lanes: Lanes) {
 
   // If the root or lanes have changed, throw out the existing stack
   // and prepare a fresh one. Otherwise we'll continue where we left off.
+  // wsd: prepareFreshStack 如果本次更新的root和正在更新的root不一致 / 优先级不一致的话需要进行一些清楚操作
+  // （比如高优先级打算低优先级，那些低优先级已经产生的一些状态需要清除）
   if (workInProgressRoot !== root || workInProgressRootRenderLanes !== lanes) {
     resetRenderTimer();
     prepareFreshStack(root, lanes);

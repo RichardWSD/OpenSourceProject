@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// fiberRootNode指的是#root
+// rootFiber指的是ReactDOM.render返回的fiber节点，这个节点的子fiber节点是App fiber节点
 ReactDOM.render(
   <App />,
   document.getElementById('root')

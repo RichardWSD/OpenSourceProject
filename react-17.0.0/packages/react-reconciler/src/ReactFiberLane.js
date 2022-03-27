@@ -509,15 +509,19 @@ export function findUpdateLane(
       return lane;
     }
     case DefaultLanePriority: {
+      // wsd: 获取当前可用赛道（DefaultLanes & ~wipLanes）的最低位（getHighestPriorityLane）
       let lane = pickArbitraryLane(DefaultLanes & ~wipLanes);
+      // wsd: 赛道全被占用
       if (lane === NoLane) {
         // If all the default lanes are already being worked on, look for a
         // lane in the transition range.
+        // wsd: 降级使用TransitionLanes
         lane = pickArbitraryLane(TransitionLanes & ~wipLanes);
         if (lane === NoLane) {
           // All the transition lanes are taken, too. This should be very
           // rare, but as a last resort, pick a default lane. This will have
           // the effect of interrupting the current work-in-progress render.
+          // wsd: 降级后还是没找到可使用的赛道则从当前赛道中强行使用一个。后果：打断当前进行中的一个更新
           lane = pickArbitraryLane(DefaultLanes);
         }
       }
@@ -715,6 +719,7 @@ export function markRootMutableRead(root: FiberRoot, updateLane: Lane) {
 }
 
 export function markRootFinished(root: FiberRoot, remainingLanes: Lanes) {
+  // wsd: 已完成的lanes
   const noLongerPendingLanes = root.pendingLanes & ~remainingLanes;
 
   root.pendingLanes = remainingLanes;
