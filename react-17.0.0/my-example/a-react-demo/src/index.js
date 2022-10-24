@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './7-5App高优先级更新如何插队';
+import App from './7-3App异步可中断更新与饥饿问题';
 import reportWebVitals from './reportWebVitals';
 
 // fiberRootNode指的是#root

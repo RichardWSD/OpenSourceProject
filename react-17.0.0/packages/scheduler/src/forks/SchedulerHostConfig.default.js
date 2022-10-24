@@ -192,7 +192,7 @@ if (
       const hasTimeRemaining = true;
       try {
         const hasMoreWork = scheduledHostCallback(
-          hasTimeRemaining,
+          hasTimeRemaining, 
           currentTime,
         );
         if (!hasMoreWork) {
@@ -201,6 +201,8 @@ if (
         } else {
           // If there's more work, schedule the next message event at the end
           // of the preceding one.
+          // wsd: hasMoreWork在时间片5ms用尽后又postMessage，在下次事件循环的时候又再执行flushWork，所以又可以调用到performConcurrentWorkOnRoot
+          // 这样就可以每5ms执行一次performConcurrentWorkOnRoot，形成5ms一个的task
           port.postMessage(null);
         }
       } catch (error) {
