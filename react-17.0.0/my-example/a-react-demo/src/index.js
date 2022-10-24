@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './3-flushSyncCallbackQueue在不同模式下的更新差异';
+import App from './7-5App高优先级更新如何插队';
 import reportWebVitals from './reportWebVitals';
 
 // fiberRootNode指的是#root
 // rootFiber指的是ReactDOM.render返回的fiber节点，这个节点的子fiber节点是App fiber节点
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
-// ReactDOM.unstable_createRoot(document.getElementById('root')).render(<App />)
+// ReactDOM.render(
+//   <App />,
+//   document.getElementById('root')
+// );
+ReactDOM.unstable_createRoot(document.getElementById('root')).render(<App />)
 console.log(ReactDOM, React)
 
 // If you want to start measuring performance in your app, pass a function

@@ -15,7 +15,7 @@ export default function App() {
     }, 1000);
     setTimeout(() => {
       button.click()
-    }, 1040);
+    }, 1010);
   }, [])
 
   return (
